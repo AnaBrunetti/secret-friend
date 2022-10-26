@@ -15,14 +15,14 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-dotenv.read_dotenv(os.path.join(BASE_DIR, ".env"))
+dotenv.read_dotenv(os.path.join(BASE_DIR, ".enviroment"))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*@_d@*=)i1mm-jr#2=fdhhh0d5smu+we^_8fw3nc!1qvw32l(-'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,19 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    
-    # Rest Framework
-    "rest_framework",
-    "rest_framework.authtoken",
-
-    # Rest Auth / All Auth
-    "rest_auth",
-    "rest_auth.registration",
-    "allauth",
-    "allauth.account",
-
-    # Swagger
-    "drf_yasg",
     
     # Apps
     "accounts.apps.AccountsConfig",
@@ -159,18 +146,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ]
-}
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegistrationSerializer"
-}
 
 # Django Admin Interface
 X_FRAME_OPTIONS = "SAMEORIGIN"
