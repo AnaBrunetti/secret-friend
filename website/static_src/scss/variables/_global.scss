@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+
+// Colors
+$black: #000;
+$white: #FFF;
+$night-rider: #323232;
+$dim-gray: #646464;
+$gray-suit: #979798;
+$spun-pearl: #ABABAC;
+$silver: #BFBFBF;
+$white-smoke: #F5F5F5;
+$razzmatazz: #CE0058;
+$blue: #003087;
+$picton-blue: #5F9BC6;
+$grey: #A3A3A3;
+
+// gradients
+$slider-opacity: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.6) 25%, rgba(255,255,255,.2) 100%);
+$cuidados-pele-oleosa: linear-gradient(140.84deg, #F9EED3 0%, #B7EEEE 100%);
+
+// line colors
+
+
+// breakpoints
+$breakpoints: (
+    sm: 600px,
+    md: 992px,
+    lg: 1366px
+); 
+
+// fonts
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Space Mono', monospace;
+$font-title: 'Spezia', sans-serif;
+
+// Animation
+$underline_initial_width: 0.7;
+$underline_final_width: 1;
+$underline_color: $dim-gray;
+$menu_active_underline_color: $white;
+$arrow_translate: 20px;

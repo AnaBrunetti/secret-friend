@@ -1,0 +1,35 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>Amigo Secreto</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/site.min.css.css' %}" type="text/css" media="screen">
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <header class="header"> 
+            <div class="logo">
+                <img src="{% static '/img/mozao.jpeg' %}" alt="Logo do cabeçalho."/>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li>Teste</li>
+                </ul>
+            </nav>
+        </header>
+        <div class="main">
+            {% block content %}{% endblock content %}
+        </div>
+        <footer>
+            <div class="copyrigth">
+                <p>Teste</p>
+            </div>
+        </footer>
+
+        <script src="{% static 'js/jquery.min.js' %}" type="text/javascript" defer></script>
+        <script src="{% static 'site/js/site.js' %}" type="text/javascript" defer></script>
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>

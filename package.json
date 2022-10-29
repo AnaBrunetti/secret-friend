@@ -1,0 +1,52 @@
+{
+  "name": "secret-friend",
+  "version": "1.0.0",
+  "description": "tcc",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnaBrunetti/secret-friend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnaBrunetti/secret-friend/issues"
+  },
+  "homepage": "https://github.com/AnaBrunetti/secret-friend#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ],
+  "dependencies": {
+    "browser-sync": "^2.27.10",
+    "child_process": "^1.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-giflossy": "^5.1.10",
+    "imagemin-pngquant": "^5.0.1",
+    "pump": "^3.0.0",
+    "sass": "^1.55.0"
+  }
+}
