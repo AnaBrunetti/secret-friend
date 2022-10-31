@@ -1,0 +1,55 @@
+.thema-login {
+
+    a {
+        text-decoration: none;
+    }
+
+    .row-left {
+        background-color: $light-blue;
+        height: 100vh;
+
+        a {
+            color: inherit;
+        }
+
+        .style-left {
+            color: $white;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+            height: 100vh;
+            
+            .land {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+            }
+        }
+    }
+
+    .row-right {
+        height: 100vh;
+
+        .login-reg-bg {
+            background: $bg-white;
+            float: left;
+            height: 100vh;
+            position: relative;
+            width: 100%;
+            
+            .login-reg-area {
+                background: $white;
+                box-shadow: 0 0 35px $box-shadow;
+                display: block;
+                float: none;
+                left: 50%;
+                padding: 35px 55px;
+                position: absolute;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 505px;
+            }
+        }
+    }
+}

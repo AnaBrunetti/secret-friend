@@ -1,35 +1,21 @@
 {% load static %}
 
-<!doctype html>
-<html>
-    <head>
-        <title>Amigo Secreto</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/site.min.css.css' %}" type="text/css" media="screen">
-        {% block extra_css %}{% endblock %}
-    </head>
-    <body>
-        <header class="header"> 
-            <div class="logo">
-                <img src="{% static '/img/mozao.jpeg' %}" alt="Logo do cabeçalho."/>
-            </div>
-            <nav class="menu">
-                <ul>
-                    <li>Teste</li>
-                </ul>
-            </nav>
-        </header>
-        <div class="main">
-            {% block content %}{% endblock content %}
-        </div>
-        <footer>
-            <div class="copyrigth">
-                <p>Teste</p>
-            </div>
-        </footer>
-
-        <script src="{% static 'js/jquery.min.js' %}" type="text/javascript" defer></script>
-        <script src="{% static 'site/js/site.js' %}" type="text/javascript" defer></script>
-        {% block extra_js %}{% endblock %}
-    </body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Amigo Secreto</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="{% static 'website/css/site.css' %}" type="text/css" media="screen">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% block header %}{% endblock header %}
+    {% block content %}{% endblock content %}
+    {% block footer %}{% endblock footer %}
+    <script src="{% static 'website/js/jquery.min.js' %}" type="text/javascript" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="{% static 'website/js/site.js' %}" type="text/javascript" defer></script>
+    {% block extra_js %}{% endblock %}
+</body>
 </html>

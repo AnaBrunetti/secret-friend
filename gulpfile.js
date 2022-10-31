@@ -8,7 +8,7 @@ const gulp = require('gulp'),
     exec = require('child_process').exec;
 
 
-const destPath = './website/static/',
+const destPath = './website/static/website/',
     destSass = destPath + 'css/',
     destJs = destPath + 'js/',
     destImg = destPath + 'img/';
@@ -22,13 +22,10 @@ const devPath = './website/static_src/',
 // SASS files
 gulp.task('style', async function () {
     gulp.src(devSass)
-        .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(sass().on('error', sass.logError))
         .on('error', notify.onError(function () {
             return 'Error on SASS/SCSS.\nLook in the console for details.\n';
         }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(destSass))
         .on('end', function () {
             notify().write('Gulp Style Done')
@@ -80,7 +77,7 @@ gulp.task('auto', function () {
         notify: true,
         proxy: "localhost:8000"
     });
-    gulp.watch([devPath + '**/*' + '.{scss,css,html,py,js}'], gulp.series(['style', 'js', 'images', 'manage-py']))
+    gulp.watch([devPath + '**/*' + '.{scss,js}', './**/templates/**/*.html'], gulp.series(['style', 'js', 'images', 'manage-py']))
         .on('change', reload);
 });
 
