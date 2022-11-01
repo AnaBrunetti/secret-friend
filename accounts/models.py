@@ -77,7 +77,6 @@ class Profissional(TimestampModel):
     )
     
     class Meta:
-        db_table = 'auth_user'
         verbose_name = _("Profissional")
         verbose_name_plural = _("Profissionais")
         
