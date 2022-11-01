@@ -25,21 +25,22 @@
 						<div class="login-reg-area">
 							<h2><b>Login</b></h2>
 							<br>
-							<form>
+							<form method="POST">
+								{% csrf_token %}
 								<!-- Username input -->
 								<div class="form-outline mb-4">
-									<label class="form-label" for="loginUser">Usuário</label>
-									<input type="username" id="loginUser" class="form-control"/>
+									<label class="form-label" for="id_username">Usuário</label>
+									<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
 								</div>
 
 								<!-- Password input -->
 								<div class="form-outline mb-4">
-									<label class="form-label" for="loginPassword">Senha</label>
-									<input type="password" id="loginPassword" class="form-control"/>
+									<label class="form-label" for="id_password">Senha</label>
+									<input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password"/>
 								</div>
 							  
 								<!-- Submit button -->
-								<button type="button" class="btn btn-primary btn-block mb-4">Login</button>
+								<button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
 								<button type="button" class="btn btn-secundary btn-block mb-4">Registra-se</button>
 							  </form>
 						</div>
