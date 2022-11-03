@@ -46,8 +46,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     
+    # Libs
+    "channels",
+    
     # Apps
     "accounts.apps.AccountsConfig",
+    "chat.apps.ChatConfig",
     "website.apps.WebsiteConfig",
 ]
 
@@ -157,3 +161,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django Admin Interface
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+# Channels
+ASGI_APPLICATION = 'main.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}

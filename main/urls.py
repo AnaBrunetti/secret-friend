@@ -12,6 +12,7 @@ urlpatterns = [
 
     # Apps
     path('', include('accounts.urls')),
+    path("", include("chat.urls")),
     path('', include('website.urls')),
 ]
 
