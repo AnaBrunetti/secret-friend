@@ -11,7 +11,7 @@ User = get_user_model()
 
 class UserProfissionalInline(admin.StackedInline):
     model = Profissional
-    fields = ["phone", "document", "crm"]
+    fields = ["phone", "document", "crm", "is_approved"]
     extra = 0
 
 

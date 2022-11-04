@@ -1,5 +1,4 @@
 from django.views.generic import CreateView
-from django.contrib import messages
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect

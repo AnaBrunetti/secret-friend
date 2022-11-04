@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "accounts/base.html" %}
 
 {% load static %}
 
@@ -23,53 +23,144 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 row-right p-0">
 					<div class="login-reg-bg">
 						<div class="login-reg-area">
-							<h2><b>Inscrever-se</b></h2>
-							<br>
-							<form method="POST">
-								{% csrf_token %}
-								<!-- Username input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_username">Usuário</label>
-									<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
+							<div class="register">
+								<h2><b>Inscrever-se</b></h2>
+								<div class="tab">
+									<button class="tablinks active" onclick="changeTab(event, 'content1')">Paciente</button>
+									<button class="tablinks" onclick="changeTab(event, 'content2')">Profissional</button>
 								</div>
+								<div id="content1" class="tabcontent">
+									<form method="POST">
+										{% csrf_token %}
+										<!-- Username input -->
+										<div class="form-outline">
+											<label class="form-label" for="id_username">Usuário</label>
+											<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
+										</div>
 
-								<!-- Date of Birth input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_date_of_birth">Data de nascimento</label>
-									<input class="form-control" type="date" name="date_of_birth" autofocus="" autocapitalize="none" autocomplete="date_of_birth" id="id_date_of_birth"/>
-								</div>
+										<!-- Date of Birth input -->
+										<div class="form-outline">
+											<label class="form-label" for="id_date_of_birth">Data de nascimento</label>
+											<input class="form-control" type="date" name="date_of_birth" autofocus="" autocapitalize="none" autocomplete="date_of_birth" id="id_date_of_birth"/>
+										</div>
 
-								<!-- Genero input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_gender">Gênero</label>
-									<select class="form-control" select name="gender" id="id_gender">
-										<option value="" selected>---------</option>
-										<option value="male">Masculino</option>
-										<option value="female">Feminino</option>
-										<option value="other">Outros</option>
-									</select>
-								</div>
+										<!-- Genero input -->
+										<div class="form-outline">
+											<label class="form-label" for="id_gender">Gênero</label>
+											<select class="form-control" select name="gender" id="id_gender">
+												<option value="" selected>---------</option>
+												<option value="male">Masculino</option>
+												<option value="female">Feminino</option>
+												<option value="other">Outros</option>
+											</select>
+										</div>
 
-								<!-- Password input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_password1">Senha</label>
-									<input class="form-control" type="password" name="password1" autocomplete="new-password" required id="id_password1">
-								</div>
+										<!-- Password input -->
+										<div class="form-outline">
+											<label class="form-label" for="id_password1">Senha</label>
+											<input class="form-control" type="password" name="password1" autocomplete="new-password" required id="id_password1">
+										</div>
 
-								<!-- Repeat Password input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_password2">Confirmação de senha</label>
-									<input class="form-control" type="password" name="password2" autocomplete="new-password" required id="id_password2"/>
+										<!-- Repeat Password input -->
+										<div class="form-outline">
+											<label class="form-label" for="id_password2">Confirmação de senha</label>
+											<input class="form-control" type="password" name="password2" autocomplete="new-password" required id="id_password2"/>
+										</div>
+									
+										<!-- Submit button -->
+										<button type="submit" class="btn btn-primary btn-block mt-4">Registra-se</button>
+										<button type="button" class="btn btn-secundary btn-block mt-4"><a href="{% url 'login' %}">Login</a></button>
+									</form>
 								</div>
-							  
-								<!-- Submit button -->
-								<button type="submit" class="btn btn-primary btn-block mb-4">Registra-se</button>
-								<button type="button" class="btn btn-secundary btn-block mb-4"><a href="{% url 'login' %}">Login</a></button>
-							</form>
+								<div id="content2" class="tabcontent">
+									<form method="POST">
+										{% csrf_token %}
+										
+										<div class="row">
+
+											<!-- Username input -->
+											<div class="form-outline">
+												<label class="form-label" for="id_username">Usuário</label>
+												<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
+											</div>
+
+											<div class="form-outline">
+												<label for="id_crm" class="form-label">Documento</label>
+												<input class="form-control" type="file" id="id_crm">
+											</div>
+
+											<div class="col d-inline-block">
+												<!-- Date of Birth input -->
+												<div class="form-outline">
+													<label class="form-label" for="id_date_of_birth">Data de nascimento</label>
+													<input class="form-control" type="date" name="date_of_birth" autofocus="" autocapitalize="none" autocomplete="date_of_birth" id="id_date_of_birth"/>
+												</div>
+
+												<!-- Genero input -->
+												<div class="form-outline">
+													<label class="form-label" for="id_gender">Gênero</label>
+													<select class="form-control" select name="gender" id="id_gender">
+														<option value="" selected>---------</option>
+														<option value="male">Masculino</option>
+														<option value="female">Feminino</option>
+														<option value="other">Outros</option>
+													</select>
+												</div>
+
+												<!-- Password input -->
+												<div class="form-outline">
+													<label class="form-label" for="id_password1">Senha</label>
+													<input class="form-control" type="password" name="password1" autocomplete="new-password" required id="id_password1">
+												</div>
+											</div>
+											<div class="col d-inline-block">
+												<div class="form-outline">
+													<label class="form-label" for="id_phone">Telefone</label>
+													<input class="form-control" type="phone" name="phone" autocomplete="phone" required id="id_phone">
+												</div>
+
+												<div class="form-outline">
+													<label class="form-label" for="id_crm">CRM</label>
+													<input class="form-control" type="crm" name="crm" autocomplete="crm" required id="id_crm"/>
+												</div>
+
+												<!-- Repeat Password input -->
+												<div class="form-outline">
+													<label class="form-label" for="id_password2">Confirmação de senha</label>
+													<input class="form-control" type="password" name="password2" autocomplete="new-password" required id="id_password2"/>
+												</div>
+											</div>
+										</div>
+										<!-- Submit button -->
+										<button type="submit" class="btn btn-primary btn-block mt-4">Registra-se</button>
+										<button type="button" class="btn btn-secundary btn-block mt-4"><a href="{% url 'login' %}">Login</a></button>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+	document.getElementById("content1").style.display = "block";
+	function changeTab(evt, tabId) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+		  tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+		  tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(tabId).style.display = "block";
+		evt.currentTarget.className += " active";
+	  }
+</script>
 {% endblock %}

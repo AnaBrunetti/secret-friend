@@ -75,6 +75,10 @@ class Profissional(TimestampModel):
             RegexValidator(regex="^\d{2,6}-[A-Z]{2}$", message="CRM inválido", code="invalid_crm")
         ]
     )
+    is_approved = models.BooleanField(
+        verbose_name=_("Está Aprovado?"),
+        default=False
+    )
     
     class Meta:
         verbose_name = _("Profissional")

@@ -1,8 +1,6 @@
 const gulp = require('gulp'),
-    rename = require('gulp-rename'),
     notify = require('gulp-notify'),
     sass = require('gulp-sass')(require('sass')),
-    sourcemaps = require('gulp-sourcemaps'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
     exec = require('child_process').exec;
@@ -11,11 +9,14 @@ const gulp = require('gulp'),
 const destPath = './website/static/website/',
     destSass = destPath + 'css/',
     destJs = destPath + 'js/',
-    destImg = destPath + 'img/';
+    destImg = destPath + 'img/',
+    destFonts = destPath + 'fonts/';
 
 const devPath = './website/static_src/',
     devSass = devPath + 'scss/**/*.scss',
+    devCss = devPath + 'css/**/*.css',
     devJs = devPath + 'js/*.js',
+    devFonts = devPath + 'fonts/*',
     devImg = devPath + 'img/**/*.{gif,png,jpg,jpeg,svg}';
 
 
@@ -28,7 +29,13 @@ gulp.task('style', async function () {
         }))
         .pipe(gulp.dest(destSass))
         .on('end', function () {
-            notify().write('Gulp Style Done')
+            notify().write('Gulp Style SCSS Done')
+        });
+
+    gulp.src(devCss)
+        .pipe(gulp.dest(destSass))
+        .on('end', function () {
+            notify().write('Gulp Style CSS Done')
         });
 });
 
@@ -49,6 +56,15 @@ gulp.task('images', async function () {
         .pipe(gulp.dest(destImg))
         .on('end', function () {
             notify().write('Gulp Images Done')
+        });
+});
+
+// Fonts
+gulp.task('fonts', async function () {
+    return gulp.src(devFonts)
+        .pipe(gulp.dest(destFonts))
+        .on('end', function () {
+            notify().write('Gulp Fonts Done')
         });
 });
 
@@ -77,7 +93,7 @@ gulp.task('auto', function () {
         notify: true,
         proxy: "localhost:8000"
     });
-    gulp.watch([devPath + '**/*' + '.{scss,js}', './**/templates/**/*.html'], gulp.series(['style', 'js', 'images', 'manage-py']))
+    gulp.watch([devPath + '**/*' + '.{scss,css,js}', './**/templates/**/*.html'], gulp.series(['style', 'js', 'images', 'fonts', 'manage-py']))
         .on('change', reload);
 });
 

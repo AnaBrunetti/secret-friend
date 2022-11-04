@@ -37,6 +37,7 @@
     "child_process": "^1.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-header": "^2.0.9",
     "gulp-imagemin": "^8.0.0",
     "gulp-notify": "^4.0.0",
