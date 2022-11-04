@@ -10,6 +10,7 @@
 
 ## Rodar o projeto.
 - Faça o download para uma pasta do seu computador: `git clone https://github.com/eduardo-monita/base-python-django.git`
+
 ### Passos a passo para rodar o proejto.
 - Atualizar o pip: `pip install --upgrade pip`;
 - Instalar a virtualenv: `virtualenv venv -p python3`;

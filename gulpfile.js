@@ -99,7 +99,7 @@ gulp.task('auto', function () {
 
 gulp.task('default', async function () {
     console.log('********************************************');
-    console.log('*---====       BODE GULP HELP       ====---*');
+    console.log('*---====            GULP HELP       ====---*');
     console.log('********************************************');
     console.log('Tasks:');
     console.log('- gulp style           SASS to CSS');
