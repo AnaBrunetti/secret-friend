@@ -12,14 +12,16 @@
 - Faça o download para uma pasta do seu computador: `git clone https://github.com/eduardo-monita/base-python-django.git`
 
 ### Passos a passo para rodar o proejto.
-- Atualizar o pip: `pip install --upgrade pip`;
-- Instalar a virtualenv: `virtualenv venv -p python3`;
+- Atualizar o pip: `python3.9 -m pip install --upgrade pip`;
+- Instalar a virtualenv: `python3.9 -m pip virtualenv`;
+- Criar a virtualenv: `python3.9 -m virtualenv venv`;
 - Criá-la na pasta raiz do projeto: `venv/Scripts/activate`;
 - Instalar os pacotes necessários: `pip install -r requirements.txt`;
 - Para inicializar o banco de dados rode: `docker-compose up -d`;
+- Baixar pacotes do node: `npm install`;
 - Baixar todos os arquivos estáticos do manager do django: `python manage.py collectstatic`;
-- Criar um usuário no seu admin: `python manage.py createsuperuser`;
 - Criar as tabelas da Django: `python manage.py migrate`;
+- Criar um usuário no seu admin: `python manage.py createsuperuser`;
 - Rodar o servidor: `python manage.py runserver`;
 - Acessar no browser: `http://localhost:8000/admin`.
 
