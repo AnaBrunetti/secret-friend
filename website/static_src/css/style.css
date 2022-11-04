@@ -641,7 +641,7 @@ header.sticky {
 .topbar {
     background: #fff;
     display: block;
-    height: 60px;
+    height: 8.5vh;
     padding: 0 48px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     z-index: 99;
@@ -656,6 +656,15 @@ header.sticky {
     z-index: 10;
 }
 
+.logout {
+    padding: 18px;
+    color: #575b5f;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
 .topbar > form {
     display: inline-block;
     vertical-align: sub;
@@ -667,7 +676,7 @@ header.sticky {
     display: inline-block;
     text-align: right;
     vertical-align: middle;
-    width: 84%;
+    width: 100%;
 }
 
 .top-area > ul {
@@ -1281,8 +1290,11 @@ header.sticky {
     border-radius: 3px;
     display: inline-block;
     width: 100%;
-    margin-bottom: 20px;
-    padding: 25px;
+    height: 100%;
+}
+
+.conversations {
+    background: #f1f1f1;
 }
 
 .new-postbox {
@@ -2057,13 +2069,12 @@ span.status.f-off {
     width: 100%;
 }
 
-
 /*--- footer ---*/
 
 footer {
     background: #fff;
     float: left;
-    padding: 75px 0;
+    padding: 10px 0 10px 0;
     width: 100%;
     position: relative;
 }
@@ -2221,6 +2232,10 @@ footer .logo {
     vertical-align: middle;
 }
 
+.logo > a > img {
+    height: 40px;
+}
+
 .logo > h4 {
     display: inline-block;
     font-family: HoboStd;
@@ -2229,7 +2244,6 @@ footer .logo {
     width: 80%;
     color: #3e3e3e;
 }
-
 
 /*--- apps widget ---*/
 
@@ -4054,14 +4068,12 @@ a.forgot-pwd {
 }
 
 .peoples {
-    border-right: 1px solid #e1e8ed;
+    padding: 0;
     display: inline-block;
     list-style: outside none none;
-    margin-bottom: 0;
-    max-height: 462px;
-    padding-left: 0;
-    position: relative;
-    width: 200px;
+    margin: 0;
+    height: 50px;
+    width: 100%;
 }
 
 .peoples > li {
@@ -4702,9 +4714,10 @@ canvas {
 }
 
 .top-area > ul.main-menu {
-    float: left;
+    text-align: center;
     margin-left: 0px;
     line-height: 60px;
+    width: 100%;
 }
 
 .top-area > ul.main-menu > li {
@@ -4722,13 +4735,17 @@ canvas {
     letter-spacing: 0.3px;
 }
 
-.top-area > ul.main-menu > li::after {
+.top-area > ul.main-menu > .after::after {
     content: "";
     font-family: fontawesome;
     font-size: 13px;
     position: absolute;
     right: 10px;
     top: 0;
+}
+
+.top-area > ul.main-menu > li::after {
+    content: none;
 }
 
 .top-area > ul.main-menu > li > ul li {
@@ -10046,4 +10063,27 @@ aside.sidebar.full-style {
     text-transform: uppercase;
 }
 
+.content {
+    background: #f4f2f2;
+    padding: 4vh;
+}
 
+.content-box {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.vh-85 {
+    height: 85vh;
+}
+
+.vh-8-5 {
+    height: 8.5vh;
+}
+
+.vh-5 {
+    height: 5vh;
+}
