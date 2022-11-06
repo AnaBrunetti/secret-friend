@@ -4164,7 +4164,7 @@ a.forgot-pwd {
 .chatting-area > li {
     display: inline-block;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .chatting-area > li p {
@@ -4200,6 +4200,7 @@ a.forgot-pwd {
 
 .chatting-area > li.you p {
     background: rgba(202, 239, 142, .65);
+    white-space: pre-wrap;
 }
 
 .chatting-area > li.me p::after {
@@ -4215,6 +4216,7 @@ a.forgot-pwd {
 }
 
 .chatting-area li.me p {
+    white-space: pre-wrap;
     margin-left: 0;
     margin-right: 10px;
     text-align: left;
