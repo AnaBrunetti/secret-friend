@@ -54,7 +54,13 @@
         <section class="h-100 w-100">
             <div class="content h-100 w-100">
                 <div class="content-box h-100 w-100">
-                    {% block content %}{% endblock content %}
+                    <div class="row h-100 w-100 p-0 m-0">
+                        <div class="col-lg-12 p-0">
+                            <div class="central-meta">
+                                {% block content %}{% endblock content %}
+                            </div>
+                        </div>	
+                    </div>
                 </div>
             </div>
         </section>

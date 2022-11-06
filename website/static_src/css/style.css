@@ -4262,12 +4262,6 @@ a.forgot-pwd {
     width: 100%;
 }
 
-.message-text-container > .text-area {
-    border: 1px solid #eeeeee;
-    border-radius: 6px 6px 0 0;
-    border-bottom: 0;
-}
-
 .message-text-container > div > textarea {
     border: none;
     box-sizing: content-box;
@@ -4284,7 +4278,14 @@ a.forgot-pwd {
     display: inline-block;
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 100%;
+}
+
+.message-text-container > form > .text-area {
+    border: 1px solid #eeeeee;
+    border-radius: 6px 6px 0 0;
+    /* border-bottom: 0; */
+    height: 100%;
 }
 
 .message-text-container form button {
