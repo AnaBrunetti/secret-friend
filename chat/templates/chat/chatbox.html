@@ -3,81 +3,84 @@
 {% load static %}
 
 {% block content %}
-    <div class="messages h-100">
-        <div class="row h-100 w-100 p-0 m-0">
-            <div class="col-2 conversations p-10 h-100">
-                <div class="row h-15 w-100 p-0 m-0">
-                    <h5 class="f-title m-0">Conversas</h5>
-                </div>
-                <div class="row h-85 w-100 p-0 m-0">
-                    <ul class="peoples w-100 m-0">
-                        <li class="h-100">
-                            <div class="people-name">
-                                <span><b>Molly cyrus</b></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-10 message-box p-10 h-100">
-                <div class="peoples-mesg-box h-100 w-100 p-0">
-                    <div class="row p-0 m-0 h-10">
-                        <div class="col conversation-head">
-                            <span>jason bourne</span>
-                        </div>
-                    </div>
-                    <div class="row p-0 m-0 h-80">
-                        <div class="col h-100 message">
-                            <ul class="chatting-area">
-                                <li class="you">
-                                    <p>what's liz short for? :)</p>
-                                </li>
-                                <li class="me">
-                                    <p>Elizabeth lol</p>
-                                </li>
-                                <li class="you">
-                                    <p>what's liz short for? :)</p>
-                                </li>
-                                <li class="me">
-                                    <p>Elizabeth lol</p>
-                                </li>
-                                <li class="you">
-                                    <p>what's liz short for? :)</p>
-                                </li>
-                                <li class="me">
-                                    <p>Elizabeth lol</p>
-                                </li>
-                                <div>
-                                    <textarea class="form-control" id="chat-text" readonly rows="10"></textarea><br>
+    <div class="container-fluid p-0 vh-85">
+        <section class="h-100 w-100">
+            <div class="content w-100" style="height: 85vh;">
+                <div class="content-box h-100 w-100">
+                    <div class="row h-100 w-100 p-0 m-0">
+                        <div class="col-lg-12 p-0 h-100">
+                            <div class="central-meta">
+                                <div class="messages h-100">
+                                    <div class="row h-100 w-100 p-0 m-0">
+                                        <div class="col-2 conversations p-10 h-100">
+                                            <div class="row h-15 w-100 p-0 m-0">
+                                                <h5 class="f-title m-0"></h5>
+                                            </div>
+                                            <div class="row h-85 w-100 p-0 m-0">
+                                                <ul class="peoples w-100 m-0">
+                                                    {% for people in peoples %}
+                                                        <li class="h-100">
+                                                            <div class="people-name">
+                                                                <a id="{{people.id}}" href="#"><span><b>{{people.username}}</b></span></a>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-10 message-box p-10 h-100">
+                                            <div class="peoples-mesg-box h-100 w-100 p-0">
+                                                <div class="row p-0 m-0 h-10">
+                                                    <div class="col conversation-head">
+                                                        <span>{{you_chat_user.username}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-0 m-0 h-80">
+                                                    <div class="col h-100 message">
+                                                        <ul class="chatting-area" id="chat-text">
+                                                            {% for message in messages %}
+                                                                <li class="{{message.type}}">
+                                                                    <p>{{message.context}}</p>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-0 m-0 h-10">
+                                                    <div class="col message-text-container h-100 w-100 p-0">
+                                                        <div class="text-area">
+                                                            <textarea id="input-text"></textarea>
+                                                        </div>
+                                                        <button id="submit" title="send"><i class="fa fa-paper-plane"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row p-0 m-0 h-10">
-                        <div class="col message-text-container h-100 w-100 p-0">
-                            <div class="text-area">
-                                <textarea id="input-text"></textarea>
                             </div>
-                            <button id="submit" title="send"><i class="fa fa-paper-plane"></i></button>
-                        </div>
+                        </div>	
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
     {% comment %} Get data for username and chatbox name{% endcomment %}
-    {{ request.user.username|json_script:"user_username" }}
-    {{ chat_box_name|json_script:"room-name" }}
+    {{ user_id|json_script:"userId" }}
+    {{ chat_room.id|json_script:"roomId" }}
+    {{ chat_room.slug|json_script:"roomName" }}
 {% endblock %}
 
 {% block extra_js %}
     <script>
-        const boxName = JSON.parse(document.getElementById('room-name').textContent);
+        const userId = JSON.parse(document.getElementById('userId').textContent);
+        const chatRoomId = JSON.parse(document.getElementById('roomId').textContent);
+        const chatRoomSlug = JSON.parse(document.getElementById('roomName').textContent);
         const chatSocket = new WebSocket(
             'ws://' +
             window.location.host +
             '/ws/chat/' +
-            boxName +
+            chatRoomSlug +
             '/'
         );
         chatSocket.onopen = function (e) {
@@ -87,7 +90,7 @@
             console.log("Something unexpected happened !");
         };
 
-        const user_username = JSON.parse(document.getElementById('user_username').textContent);
+
         document.querySelector("#submit").focus();
         document.querySelector("#submit").onkeyup = function (e) {
           if (e.keyCode == 13) {
@@ -99,14 +102,20 @@
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
                 'message': message,
-                'username': user_username,
+                'user_id': userId,
+                'chat_room_id': chatRoomId,
             }));
             messageInputDom.value = '';
         };
 
+
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-text').value += (data.message + ' sent by ' + data.username   + '\n') // add message to text box
+            if (data.user_id == userId) {
+                document.querySelector('#chat-text').innerHTML += ('<li class="me"><p>' + data.message + '</p></li>');
+            } else {
+                document.querySelector('#chat-text').innerHTML += ('<li class="you"><p>' + data.message + '</p></li>');
+            }
         }
     </script>
 {% endblock %}
