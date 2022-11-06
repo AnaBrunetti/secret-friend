@@ -1,7 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views
 from accounts.views import (
-    RegisterView
+    RegisterView,
+    PasswordChangeView,
+    AboutView,
+    ContactView,
+    TermsView
 )
 
 
@@ -11,11 +15,15 @@ urlpatterns = [
     
     path("register", RegisterView.as_view(), name="register"),
 
-    path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/', views.PasswordChangeDoneView.as_view(), name='password_change_done'),
 
     path('password_reset/', views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    
+    path("about/", AboutView.as_view(), name="about"),
+    path("terms/", TermsView.as_view(), name="terms"),
+    path("contact/", ContactView.as_view(), name="contact"),
 ]
