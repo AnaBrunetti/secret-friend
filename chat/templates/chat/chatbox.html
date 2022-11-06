@@ -2,49 +2,72 @@
 
 {% load static %}
 
-{% block header %}
-    <header class="header"> 
-        <div class="logo">
-            <img src="{% static 'website/img/mozao.jpeg' %}" alt="Logo do cabeçalho."/>
-        </div>
-        <nav class="menu">
-            <ul>
-                <li>Item menu</li>
-                <li><a href="{% url 'logout' %}">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
-{% endblock %}
-
 {% block content %}
-    <h1>Teste Chat</h1>
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-3">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatbox</label>
-                        <textarea class="form-control" id="chat-text" readonly rows="10"></textarea><br>
+    <div class="messages h-100">
+        <div class="row h-100 w-100 p-0 m-0">
+            <div class="col-2 conversations p-10 h-100">
+                <div class="row h-15 w-100 p-0 m-0">
+                    <h5 class="f-title m-0">Conversas</h5>
+                </div>
+                <div class="row h-85 w-100 p-0 m-0">
+                    <ul class="peoples w-100 m-0">
+                        <li class="h-100">
+                            <div class="people-name">
+                                <span><b>Molly cyrus</b></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10 message-box p-10 h-100">
+                <div class="peoples-mesg-box h-100 w-100 p-0">
+                    <div class="row p-0 m-0 h-10">
+                        <div class="col conversation-head">
+                            <span>jason bourne</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Enter text here" id="input" type="text"></br>
+                    <div class="row p-0 m-0 h-80">
+                        <div class="col h-100 message">
+                            <ul class="chatting-area">
+                                <li class="you">
+                                    <p>what's liz short for? :)</p>
+                                </li>
+                                <li class="me">
+                                    <p>Elizabeth lol</p>
+                                </li>
+                                <li class="you">
+                                    <p>what's liz short for? :)</p>
+                                </li>
+                                <li class="me">
+                                    <p>Elizabeth lol</p>
+                                </li>
+                                <li class="you">
+                                    <p>what's liz short for? :)</p>
+                                </li>
+                                <li class="me">
+                                    <p>Elizabeth lol</p>
+                                </li>
+                                <div>
+                                    <textarea class="form-control" id="chat-text" readonly rows="10"></textarea><br>
+                                </div>
+                            </ul>
+                        </div>
                     </div>
-                    <input class="btn btn-primary btn-lg btn-block" id="submit" type="button" value="Send">
-                </form>
+                    <div class="row p-0 m-0 h-10">
+                        <div class="col message-text-container h-100 w-100 p-0">
+                            <div class="text-area">
+                                <textarea id="input-text"></textarea>
+                            </div>
+                            <button id="submit" title="send"><i class="fa fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     {% comment %} Get data for username and chatbox name{% endcomment %}
     {{ request.user.username|json_script:"user_username" }}
     {{ chat_box_name|json_script:"room-name" }}
-{% endblock %}
-
-{% block footer %}
-    <footer>
-        <div class="copyrigth">
-            <p>Teste</p>
-        </div>
-    </footer>
 {% endblock %}
 
 {% block extra_js %}
@@ -72,7 +95,7 @@
           }
         };
         document.querySelector('#submit').onclick = function (e) {
-            const messageInputDom = document.querySelector('#input');
+            const messageInputDom = document.querySelector('#input-text');
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
                 'message': message,

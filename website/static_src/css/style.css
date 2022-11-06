@@ -4145,33 +4145,29 @@ a.forgot-pwd {
     padding-left: 15px;
 }
 
-.peoples-mesg-box > div > ul.chatting-area {
+.peoples-mesg-box .message{
+    padding: 10px 0;
+}
+
+.chatting-area {
+    overflow-y:auto;
     display: inline-block;
     list-style: outside none none;
     margin-bottom: 0;
-    max-height: 322px;
-    padding: 40px 15px 10px 0;
+    padding: 10px 15px;
     width: 100%;
+    height: 100%;
     position: relative;
     overflow-x: hidden;
 }
 
-.peoples-mesg-box > div > ul li {
+.chatting-area > li {
     display: inline-block;
     width: 100%;
     margin-bottom: 20px;
 }
 
-.peoples-mesg-box > div > ul li > figure {
-    display: inline-block;
-    margin-bottom: 0;
-    max-width: 32px;
-    min-width: 32px;
-    width: 32px;
-    vertical-align: top;
-}
-
-.peoples-mesg-box > div > ul > li p {
+.chatting-area > li p {
     display: inline-block;
     font-size: 14px;
     line-height: initial;
@@ -4185,40 +4181,40 @@ a.forgot-pwd {
     background: rgba(39, 170, 225, 0.1);
 }
 
-.peoples-mesg-box > div > ul > li p::before {
+.chatting-area > li p::before {
     top: 4px;
     border-color: transparent;
 }
 
-.peoples-mesg-box > div > ul > li p::after {
+.chatting-area > li p::after {
     top: 6px;
     border-right-color: rgba(202, 239, 142, .65);
 }
 
-.peoples-mesg-box > div > ul > li.me p::before {
+.chatting-area > li.me p::before {
     border-left: 11px solid transparent;
     border-right: initial;
     left: auto;
     right: -11px;
 }
 
-.peoples-mesg-box > div > ul > li.you p {
+.chatting-area > li.you p {
     background: rgba(202, 239, 142, .65);
 }
 
-.peoples-mesg-box > div > ul > li.me p::after {
+.chatting-area > li.me p::after {
     border-left: 10px solid rgba(39, 170, 225, 0.1);
     border-right: initial;
     left: auto;
     right: -10px;
 }
 
-.peoples-mesg-box > div > ul li.me {
+.chatting-area li.me {
     direction: rtl;
     text-align: right;
 }
 
-.peoples-mesg-box > div > ul li.me p {
+.chatting-area li.me p {
     margin-left: 0;
     margin-right: 10px;
     text-align: left;
@@ -4262,21 +4258,21 @@ a.forgot-pwd {
     width: 100%;
 }
 
-.message-text-container > form {
+.message-text-container {
     display: inline-block;
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.message-text-container > form > div.text-area {
+.message-text-container > div.text-area {
     border: 1px solid #eeeeee;
-    border-radius: 6px 6px 0 0;
+    border-radius: 6px;
     width: 100%;
     height: 100%;
 }
 
-.message-text-container > form > div > textarea {
+.message-text-container > div > textarea {
     border: none;
     color: #7f7f7f;
     height: 50px;
@@ -4285,9 +4281,10 @@ a.forgot-pwd {
     display: inline-block;
     width: 95%;
     height: 100%;
+    overflow-y: auto;
 }
 
-.message-text-container form button {
+.message-text-container button {
     border-radius: 100%;
     height: 30px;
     padding: 0;
@@ -4297,6 +4294,10 @@ a.forgot-pwd {
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
+    background-color: #088dcd;
+    color: #fff;
+    border: medium none;
+    font-size: 13px;
 }
 
 .x_panel {
