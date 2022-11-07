@@ -170,3 +170,10 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
