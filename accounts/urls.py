@@ -3,6 +3,7 @@ from django.contrib.auth import views
 from accounts.views import (
     RegisterView,
     PasswordChangeView,
+    ProfileEditView,
 )
 
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     
+    path("edit_profile/", ProfileEditView.as_view(), name="edit-profile"),
 ]

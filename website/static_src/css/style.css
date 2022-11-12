@@ -2951,7 +2951,7 @@ li.google {
 
 .contact-form {
     float: left;
-    padding: 50px 60px;
+    padding: 35px 60px;
     position: relative;
     width: 60%;
 }
@@ -6523,7 +6523,42 @@ a.reply {
 
 .gap-60 {
     float: left;
+    padding: 60px 0;
+    width: 100%;
+}
+
+.gap-50 {
+    float: left;
     padding: 50px 0;
+    width: 100%;
+}
+
+.gap-40 {
+    float: left;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.gap-45 {
+    float: left;
+    padding: 45px 0;
+    width: 100%;
+}
+
+.gap-30 {
+    float: left;
+    padding: 30px 0;
+    width: 100%;
+}
+
+.gap-35 {
+    float: left;
+    padding: 35px 0;
+    width: 100%;
+}
+.gap-50-15 {
+    float: left;
+    padding: 50px 0 15px 0;
     width: 100%;
 }
 

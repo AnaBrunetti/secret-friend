@@ -27,3 +27,6 @@ class RegisterView(CreateView):
     
 class PasswordChangeView(views.PasswordChangeView):
     template_name = 'registration/password_change_form1.html'
+    
+class ProfileEditView(views.PasswordChangeView):
+    template_name = 'accounts/edit-profile.html'

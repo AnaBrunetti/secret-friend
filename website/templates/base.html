@@ -76,19 +76,14 @@
     <div class="container-fluid p-0 vh-83-5">
         {% block content %}{% endblock content %}
     </div>
-
-    <footer>
-		<div class="container h-100">
-			<div class="row h-100">
-				<div class="col-12 text-center h-100">
-                    <p class="m-0">
-                        Copyright © 2022 - Amigo Secreto. <a href="{% url 'terms' %}">  <b>Termos de Uso</b></a>
-                    </p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+    <footer class="text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3">
+            Copyright © 2022 - Amigo Secreto. 
+          <a href="{% url 'terms' %}">  <b>Termos de Uso</b></a>
+        </div>
+        <!-- Copyright -->
+    </footer>
     <script src="{% static 'website/js/jquery.min.js' %}" type="text/javascript" defer></script>
     <script src="{% static 'website/js/script.js' %}" type="text/javascript" defer></script>
     <script src="{% static 'website/js/main.min.js' %}" type="text/javascript" defer></script>
