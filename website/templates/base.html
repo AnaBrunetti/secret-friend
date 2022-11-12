@@ -14,6 +14,29 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    <div class="responsive-header">
+		<div class="mh-head first Sticky">
+			<span class="mh-btns-left">
+				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+			</span>
+			<span class="mh-text">
+				<a href="newsfeed.html" title=""><img src="images/logo2.png" alt=""></a>
+			</span>
+		</div>
+		<nav id="menu" class="res-menu">
+			<ul>
+				<li><span>Configurações da Conta</span>
+					<ul>
+						<li><a href="{% url 'password_change' %}" title="">Editar Senha</a></li>
+						<li><a href="edit-profile.html" title="">Editar Perfil</a></li>
+					</ul>
+				</li>
+				<li><a href="{% url 'about' %}" title="">Sobre nós</a></li>
+				<li><a href="{% url 'contact' %}" title="">Contato</a></li>
+			</ul>
+		</nav>
+	</div><!-- responsive header -->
+
     <header class="vh-8-5">
         <div class="topbar stick">
             <div class="row">
@@ -28,7 +51,7 @@
                             <li class="after">
                                 <a href="#" title="">Configurações da Conta</a>
                                 <ul>
-                                    <li><a href="{% url 'password_change' %}" title="">Editar Password</a></li>
+                                    <li><a href="{% url 'password_change' %}" title="">Editar Senha</a></li>
                                     <li><a href="edit-profile.html" title="">Editar Perfil</a></li>
                                 </ul>
                             </li>
@@ -50,19 +73,17 @@
         </div>
     </header>
 
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 vh-83-5">
         {% block content %}{% endblock content %}
     </div>
 
-    <footer class="vh-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 text-center">
-					<div class="widget">
-                        <p class="m-0">
-                            Copyright © 2022 - Amigo Secreto. <a href="{% url 'terms' %}">  <b>Termos de Uso</b></a>
-                        </p>
-					</div>
+    <footer>
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-12 text-center h-100">
+                    <p class="m-0">
+                        Copyright © 2022 - Amigo Secreto. <a href="{% url 'terms' %}">  <b>Termos de Uso</b></a>
+                    </p>
 				</div>
 			</div>
 		</div>
