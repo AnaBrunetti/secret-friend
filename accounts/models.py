@@ -61,6 +61,11 @@ class Profissional(TimestampModel):
             RegexValidator(regex="^\(\d{2,3}\) \d{4,5}\-\d{4}$", message="Número inválido", code="invalid_phone")
         ]
     )
+    picture = models.ImageField(
+        verbose_name=_("Foto de perfil"),
+        upload_to="user/",
+        max_length=255
+    )
     document = models.FileField(
         verbose_name=_("Foto do documento"),
         upload_to="user/",

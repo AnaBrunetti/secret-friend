@@ -14,11 +14,11 @@ class RegisterView(CreateView):
     
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse_lazy('home'))
+            return HttpResponseRedirect(reverse_lazy('chat'))
         return super(RegisterView, self).get(request, *args, **kwargs)
     
     def get_success_url(self):
-        return reverse_lazy("home")
+        return reverse_lazy("chat")
 
     def form_valid(self, form):
         user = form.save(commit=False)

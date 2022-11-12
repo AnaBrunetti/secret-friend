@@ -14,14 +14,21 @@
                                     <div class="row h-100 w-100 p-0 m-0">
                                         <div class="col-2 conversations p-10 h-100">
                                             <div class="row h-15 w-100 p-0 m-0">
-                                                <h5 class="f-title m-0"></h5>
+                                                <h5 class="f-title m-0">Conversas</h5>
                                             </div>
                                             <div class="row h-85 w-100 p-0 m-0">
-                                                <ul class="peoples w-100 m-0">
+                                                <ul class="peoples w-100 m-0 h-100">
                                                     {% for people in peoples %}
                                                         <li class="h-100">
+                                                            <figure>
+                                                            {% if people.profissional %}
+                                                                <img src="{{people.profissional.picture.url}}" alt="">
+                                                            {% else %}
+                                                                <img src={% static 'website/img/logo.png' %} alt="">
+                                                            {% endif %}
+                                                            </figure>
                                                             <div class="people-name">
-                                                                <a id="{{people.id}}" href="#"><span><b>{{people.username}}</b></span></a>
+                                                                <a onclick="update('{{people.username}}');"><span><b>{{people.username}}</b></span></a>
                                                             </div>
                                                         </li>
                                                     {% endfor %}
@@ -30,8 +37,15 @@
                                         </div>
                                         <div class="col-10 message-box p-10 h-100">
                                             <div class="peoples-mesg-box h-100 w-100 p-0">
-                                                <div class="row p-0 m-0 h-10">
-                                                    <div class="col conversation-head">
+                                                <div class="row p-0 m-0">
+                                                    <div class="col conversation-head h-100">
+                                                        <figure>
+                                                            {% if you_chat_user.profissional %}
+                                                                <img src="{{you_chat_user.profissional.picture.url}}" alt="">
+                                                            {% else %}
+                                                                <img src={% static 'website/img/logo.png' %} alt="">
+                                                            {% endif %}
+                                                        </figure>
                                                         <span>{{you_chat_user.username}}</span>
                                                     </div>
                                                 </div>
@@ -117,6 +131,17 @@
             } else {
                 document.querySelector('#chat-text').innerHTML += ('<li class="you"><p>' + data.message + '</p></li>');
             }
+        }
+    </script>
+    <script>
+        function update(userName) {
+            let params = new URLSearchParams(document.location.search);
+            if (params.get("user")) {
+                params.set("user", userName);
+            } else {
+                params.append("user", userName);
+            }
+            window.location.search = params.toString();
         }
     </script>
 {% endblock %}
