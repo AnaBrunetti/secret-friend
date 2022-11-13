@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid p-0 vh-85">
+    <div class="container-fluid p-0 vh-80">
         <section class="h-100 w-100">
-            <div class="content w-100" style="height: 85vh;">
+            <div class="content w-100 h-100">
                 <div class="content-box h-100 w-100">
                     <div class="row h-100 w-100 p-0 m-0">
                         <div class="col-lg-12 p-0 h-100">
-                            <div class="central-meta">
+                            <div class="central-meta m-0 p-0">
                                 <div class="messages h-100">
                                     <div class="row h-100 w-100 p-0 m-0">
-                                        <div class="col-2 conversations p-10 h-100">
+                                        <div class="col-5 col-sm-4 col-lg-3 conversations p-10 h-100">
                                             <div class="row h-15 w-100 p-0 m-0">
                                                 <h5 class="f-title m-0">Conversas</h5>
                                             </div>
@@ -20,27 +20,33 @@
                                                 <ul class="peoples w-100 m-0 h-100">
                                                     {% for people in peoples %}
                                                         <li class="h-100">
-                                                            <figure>
-                                                            {% if people.profissional %}
-                                                                <img src="{{people.profissional.picture.url}}" alt="">
-                                                            {% else %}
-                                                                <img src={% static 'website/img/logo.png' %} alt="">
-                                                            {% endif %}
-                                                            </figure>
-                                                            <div class="people-name">
-                                                                <a onclick="update('{{people.username}}');"><span><b>{{people.username}}</b></span></a>
-                                                            </div>
+                                                            <a onclick="update('{{people.username}}');" style="display: block;">
+                                                                <figure>
+                                                                {% if people.role == bot %}
+                                                                    <img src={% static 'website/img/logo.png' %} alt="">
+                                                                {% elif people.role == profissional %}
+                                                                    <img src="{{people.profissional.picture.url}}" alt="">
+                                                                {% else %}
+                                                                    <img src={% static 'website/img/logo.png' %} alt="">
+                                                                {% endif %}
+                                                                </figure>
+                                                                <div class="people-name">
+                                                                    <span><b>{{people.username}}</b></span>
+                                                                </div>
+                                                            </a>
                                                         </li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-10 message-box p-10 h-100">
+                                        <div class="col-7 col-sm-8 col-lg-9 message-box p-10 h-100">
                                             <div class="peoples-mesg-box h-100 w-100 p-0">
-                                                <div class="row p-0 m-0">
+                                                <div class="row p-0 m-0 vh-11">
                                                     <div class="col conversation-head h-100">
                                                         <figure>
-                                                            {% if you_chat_user.profissional %}
+                                                            {% if you_chat_user.role == bot %}
+                                                                <img src={% static 'website/img/logo.png' %} alt="">
+                                                            {% elif you_chat_user.role == profissional %}
                                                                 <img src="{{you_chat_user.profissional.picture.url}}" alt="">
                                                             {% else %}
                                                                 <img src={% static 'website/img/logo.png' %} alt="">
@@ -49,7 +55,7 @@
                                                         <span>{{you_chat_user.username}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="row p-0 m-0 h-80">
+                                                <div class="row p-0 m-0 vh-50">
                                                     <div class="col h-100 message">
                                                         <ul class="chatting-area" id="chat-text">
                                                             {% for message in messages %}
@@ -60,7 +66,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="row p-0 m-0 h-10">
+                                                <div class="row p-0 m-0 vh-8">
                                                     <div class="col message-text-container h-100 w-100 p-0">
                                                         <div class="text-area">
                                                             <textarea id="input-text"></textarea>
@@ -87,6 +93,9 @@
 
 {% block extra_js %}
     <script>
+        const chat_text = document.querySelector('#chat-text');
+        chat_text.scrollTop = chat_text.scrollHeight;
+
         const userId = JSON.parse(document.getElementById('userId').textContent);
         const chatRoomId = JSON.parse(document.getElementById('roomId').textContent);
         const chatRoomSlug = JSON.parse(document.getElementById('roomName').textContent);
@@ -125,12 +134,13 @@
 
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            console.log(data.message)
+            
             if (data.user_id == userId) {
-                document.querySelector('#chat-text').innerHTML += ('<li class="me"><p>' + data.message + '</p></li>');
+                chat_text.innerHTML += ('<li class="me"><p>' + data.message + '</p></li>');
             } else {
-                document.querySelector('#chat-text').innerHTML += ('<li class="you"><p>' + data.message + '</p></li>');
+                chat_text.innerHTML += ('<li class="you"><p>' + data.message + '</p></li>');
             }
+            chat_text.scrollTop = chat_text.scrollHeight;
         }
     </script>
     <script>

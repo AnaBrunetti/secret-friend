@@ -9,9 +9,11 @@ from helpers.models import TimestampModel
 class User(AbstractUser):
     ROLE_PROFESSIONAL = 'professional'
     ROLE_PATIENT = 'patient'
+    ROLE_BOT = 'bot'
     ROLE_CHOICES = [
         (ROLE_PROFESSIONAL, _('Profissional')),
-        (ROLE_PATIENT, _('Paciente'))
+        (ROLE_PATIENT, _('Paciente')),
+        (ROLE_BOT, _('Bot')),
     ]
     
     GENDER_MALE = 'male'

@@ -1,11 +1,12 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 from accounts.models import User
-from chat.models import Chat, ChatRoom, Message
+from chat.models import Chat, ChatRoom
 
 
 class ChatView(TemplateView):
@@ -18,6 +19,8 @@ class ChatView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data["user_id"] = self.request.user.id
+        context_data["bot"] = User.ROLE_BOT
+        context_data["profissional"] = User.ROLE_PROFESSIONAL
         return context_data
     
     def get(self, request, *args, **kwargs):
@@ -26,6 +29,10 @@ class ChatView(TemplateView):
         you_chat_user = None
         if request.GET.get("user") and User.objects.filter(username=request.GET.get("user")).exists():
             you_chat_user = User.objects.get(username=request.GET.get("user"))
+            
+        if not you_chat_user and me_chat_user.role == User.ROLE_PATIENT and \
+                not Chat.objects.filter(users__role=User.ROLE_PROFESSIONAL, users=me_chat_user).exists():
+            return HttpResponseRedirect(reverse_lazy('add_chat'))
 
         if you_chat_user and Chat.objects.filter(users=me_chat_user).filter(users=you_chat_user).exists():
             chat_room = Chat.objects.filter(users=me_chat_user).filter(users=you_chat_user).first().chat_room
@@ -40,11 +47,8 @@ class ChatView(TemplateView):
             chat.users.add(me_chat_user)
             chat.users.add(you_chat_user)
         elif not you_chat_user and Chat.objects.filter(users=me_chat_user).exists():
-            chat = Chat.objects.filter(users=me_chat_user).first()
-            chat_room = chat.chat_room
-            you_chat_user = chat.users.exclude(id=me_chat_user.id).first()
-        else:
-            return HttpResponseRedirect(reverse_lazy('add_chat'))
+            you_chat_user = User.objects.filter(chats__users=me_chat_user).exclude(id=me_chat_user.id).distinct().first()
+            chat_room = Chat.objects.filter(users=me_chat_user).filter(users=you_chat_user).first().chat_room
         
         kwargs["me_chat_user"] = me_chat_user
         kwargs["you_chat_user"] = you_chat_user
@@ -55,9 +59,20 @@ class ChatView(TemplateView):
         return self.render_to_response(context)
 
 
-class AddChatView(TemplateView):
+class AddChatView(ListView):
+    model = User
     template_name = "chat/add_chat.html"
+    queryset = User.objects.filter(role=User.ROLE_PROFESSIONAL)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(AddChatView, self).dispatch(*args, **kwargs)
+    
+    def get_queryset(self):
+        queryset = self.queryset
+        search = self.request.GET.get("q")
+        if search:
+            queryset = queryset.filter(
+                Q(username__icontains=search) | Q(first_name__icontains=search) | Q(last_name__icontains=search)
+            )
+        return queryset

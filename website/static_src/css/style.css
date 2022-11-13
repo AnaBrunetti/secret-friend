@@ -2006,7 +2006,8 @@ li.post-comment .comet-avatar {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
-    width: 23%;
+    width: 10%;
+    max-width: 45px;
     position: relative;
 }
 
@@ -4096,9 +4097,8 @@ a.forgot-pwd {
     display: inline-block;
     margin-bottom: 0;
     max-width: 45px;
-    min-width: 45px;
     vertical-align: middle;
-    width: 45px;
+    width: 15%;
     position: relative;
 }
 
@@ -4106,7 +4106,6 @@ a.forgot-pwd {
     display: inline-block;
     margin-left: 10px;
     vertical-align: middle;
-    width: 66%;
 }
 
 .people-name > span {
@@ -4201,6 +4200,7 @@ a.forgot-pwd {
 .chatting-area > li.you p {
     background: rgba(202, 239, 142, .65);
     white-space: pre-wrap;
+    width: auto;
 }
 
 .chatting-area > li.me p::after {
@@ -4218,9 +4218,9 @@ a.forgot-pwd {
 .chatting-area li.me p {
     white-space: pre-wrap;
     margin-left: 0;
-    margin-right: 10px;
     text-align: left;
     direction: ltr;
+    width: auto;
 }
 
 .conversation-head {
@@ -4236,8 +4236,9 @@ a.forgot-pwd {
     display: inline-block;
     margin-bottom: 0;
     max-width: 45px;
+    min-width: 30px;
     vertical-align: middle;
-    width: 45px;
+    width: 10%;
 }
 
 .conversation-head > span {
@@ -10122,8 +10123,8 @@ aside.sidebar.full-style {
     padding: 10px!important;
 }
 
-.vh-85 {
-    height: 85vh!important;
+.vh-8 {
+    height: 8vh!important;
 }
 
 .vh-8-5 {
@@ -10132,6 +10133,18 @@ aside.sidebar.full-style {
 
 .vh-5 {
     height: 5vh!important;
+}
+
+.vh-11 {
+    height: 11vh!important;
+}
+
+.vh-50 {
+    height: 50vh!important;
+}
+
+.vh-80 {
+    height: 80vh!important;
 }
 
 .h-10 {
@@ -10148,6 +10161,10 @@ aside.sidebar.full-style {
 
 .h-70 {
     height: 70%!important;
+}
+
+.h-75 {
+    height: 75%!important;
 }
 
 .h-80 {

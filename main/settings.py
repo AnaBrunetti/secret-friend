@@ -171,6 +171,13 @@ CHANNEL_LAYERS = {
     }
 }
 
+# Bot
+BOT_NAME = os.environ.get("BOT_NAME", "bot")
+BOT_EMAIL = os.environ.get("BOT_EMAIL", "bot.secreat.friend@gmail.com")
+BOT_PASSWORD = os.environ.get("BOT_PASSWORD", "2WX4g#4G#9E6")
+BOT_MESSAGE = "Está é uma mensagem automática do bot"
+
+# Email
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = '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'
