@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from accounts.forms import RegisterForm
 from django.contrib.auth import views
 
+
 class RegisterView(CreateView):
     template_name = 'accounts/register.html'
     form_class = RegisterForm
@@ -24,9 +25,11 @@ class RegisterView(CreateView):
         user.save()
         login(self.request, user)
         return HttpResponseRedirect(self.get_success_url())
-    
+
+
 class PasswordChangeView(views.PasswordChangeView):
-    template_name = 'registration/password_change_form1.html'
-    
+    template_name = 'registration/password_change.html'
+
+
 class ProfileEditView(views.PasswordChangeView):
     template_name = 'accounts/edit-profile.html'
