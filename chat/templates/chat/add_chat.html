@@ -3,44 +3,42 @@
 {% load static %}
 
 {% block content %}
-<div class="theme-layout">
-    <section>
-        <div class="gray-bg" style="padding: 20vh 0;">
-            <div class="container-fluid">
-                <div class="row w-100">
-                    <div class="col-0 col-sm-1 col-lg-2 m-0 p-0"></div>
-                    <div class="col-12 col-sm-10 col-lg-8">
-                        <aside class="sidebar w-100">
-                            <div class="widget friend-list w-100">
-                                <h4 class="widget-title">Profissionais</h4>
-                                <div id="searchDir">
-                                    <form class="filterform" action="{% url 'add_chat' %}" method="get">
-                                        <input class="filterinput" name="q" type="text" placeholder="Search...">
-                                    </form>
-                                </div>
-                                <ul id="people-list" class="friendz-list">
-                                    {% for people in object_list %}
-                                        <li class="h-100">
-                                            <a id="{{people.username}}" href="{% url 'chat' %}" onclick="update('{{people.username}}');" style="display: block">
-                                                <figure style="width: 10%;">
-                                                    <img src="{{people.profissional.picture.url}}" alt="">
-                                                </figure>
-                                                <div class="friendz-meta">
-                                                    <span>{{people.username}}</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+<section>
+    <div class="gray-bg" style="padding: 20vh 0;">
+        <div class="container-fluid">
+            <div class="row w-100">
+                <div class="col-0 col-sm-1 col-lg-2 m-0 p-0"></div>
+                <div class="col-12 col-sm-10 col-lg-8">
+                    <aside class="sidebar w-100">
+                        <div class="widget friend-list w-100">
+                            <h4 class="widget-title">Profissionais</h4>
+                            <div id="searchDir">
+                                <form class="filterform" action="{% url 'add_chat' %}" method="get">
+                                    <input class="filterinput" name="q" type="text" placeholder="Search...">
+                                </form>
                             </div>
-                        </aside>
-                    </div>
-                    <div class="col-0 col-sm-1 col-lg-2 m-0 p-0"></div>
+                            <ul id="people-list" class="friendz-list">
+                                {% for people in object_list %}
+                                    <li class="h-100">
+                                        <a id="{{people.username}}" href="{% url 'chat' %}" onclick="update('{{people.username}}');" style="display: block">
+                                            <figure style="width: 10%;">
+                                                <img src="{{people.profissional.picture.url}}" alt="">
+                                            </figure>
+                                            <div class="friendz-meta">
+                                                <span>{{people.username}}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </aside>
                 </div>
+                <div class="col-0 col-sm-1 col-lg-2 m-0 p-0"></div>
             </div>
-        </div>	
-    </section>
-</div>
+        </div>
+    </div>	
+</section>
 {% endblock %}
 
 {% block extra_js %}

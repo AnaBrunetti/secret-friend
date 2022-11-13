@@ -3,88 +3,82 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid p-0 vh-82">
-        <section class="h-100 w-100">
-            <div class="content w-100 h-100">
-                <div class="content-box h-100 w-100">
-                    <div class="row h-100 w-100 p-0 m-0">
-                        <div class="col-lg-12 p-0 h-100">
-                            <div class="central-meta m-0 p-0">
-                                <div class="messages h-100">
-                                    <div class="row h-100 w-100 p-0 m-0">
-                                        <div class="col-5 col-sm-4 col-lg-3 conversations p-10 h-100">
-                                            <div class="row h-15 w-100 p-0 m-0">
-                                                <h5 class="f-title m-0">Conversas</h5>
-                                            </div>
-                                            <div class="row h-85 w-100 p-0 m-0">
-                                                <ul class="peoples w-100 m-0 h-100">
-                                                    {% for people in peoples %}
-                                                        <li class="h-100">
-                                                            <a onclick="update('{{people.username}}');" style="display: block;">
-                                                                <figure>
-                                                                {% if people.role == bot %}
-                                                                    <img src={% static 'website/img/logo.png' %} alt="">
-                                                                {% elif people.role == profissional %}
-                                                                    <img src="{{people.profissional.picture.url}}" alt="">
-                                                                {% else %}
-                                                                    <img src={% static 'website/img/logo.png' %} alt="">
-                                                                {% endif %}
-                                                                </figure>
-                                                                <div class="people-name">
-                                                                    <span><b>{{people.username}}</b></span>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
+    <section>
+        <div class="gray-bg" style="padding: 4vh 0;">
+            <div class="container-fluid">
+                <div class="central-meta m-0 p-0">
+                    <div class="messages">
+                        <div class="row h-100 w-100 p-0 m-0">
+                            <div class="col-5 col-sm-4 col-lg-3 conversations p-10">
+                                <div class="row h-15 w-100 p-0 m-0">
+                                    <h5 class="f-title m-0">Conversas</h5>
+                                </div>
+                                <div class="row h-85 w-100 p-0 m-0">
+                                    <ul class="peoples w-100 m-0 h-100">
+                                        {% for people in peoples %}
+                                            <li class="h-100">
+                                                <a onclick="update('{{people.username}}');" style="display: block;">
+                                                    <figure>
+                                                    {% if people.role == bot %}
+                                                        <img src={% static 'website/img/logo.png' %} alt="">
+                                                    {% elif people.role == profissional %}
+                                                        <img src="{{people.profissional.picture.url}}" alt="">
+                                                    {% else %}
+                                                        <img src={% static 'website/img/logo.png' %} alt="">
+                                                    {% endif %}
+                                                    </figure>
+                                                    <div class="people-name">
+                                                        <span><b>{{people.username}}</b></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-7 col-sm-8 col-lg-9 message-box p-10">
+                                <div class="peoples-mesg-box h-100 w-100 p-0">
+                                    <div class="row p-0 m-0 vh-11">
+                                        <div class="col conversation-head h-100">
+                                            <figure>
+                                                {% if you_chat_user.role == bot %}
+                                                    <img src={% static 'website/img/logo.png' %} alt="">
+                                                {% elif you_chat_user.role == profissional %}
+                                                    <img src="{{you_chat_user.profissional.picture.url}}" alt="">
+                                                {% else %}
+                                                    <img src={% static 'website/img/logo.png' %} alt="">
+                                                {% endif %}
+                                            </figure>
+                                            <span>{{you_chat_user.username}}</span>
                                         </div>
-                                        <div class="col-7 col-sm-8 col-lg-9 message-box p-10 h-100">
-                                            <div class="peoples-mesg-box h-100 w-100 p-0">
-                                                <div class="row p-0 m-0 vh-11">
-                                                    <div class="col conversation-head h-100">
-                                                        <figure>
-                                                            {% if you_chat_user.role == bot %}
-                                                                <img src={% static 'website/img/logo.png' %} alt="">
-                                                            {% elif you_chat_user.role == profissional %}
-                                                                <img src="{{you_chat_user.profissional.picture.url}}" alt="">
-                                                            {% else %}
-                                                                <img src={% static 'website/img/logo.png' %} alt="">
-                                                            {% endif %}
-                                                        </figure>
-                                                        <span>{{you_chat_user.username}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row p-0 m-0 vh-52">
-                                                    <div class="col h-100 message">
-                                                        <ul class="chatting-area" id="chat-text">
-                                                            {% for message in messages %}
-                                                                <li class="{{message.type}}">
-                                                                    <p>{{message.context}}</p>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row p-0 m-0 vh-8">
-                                                    <div class="col message-text-container h-100 w-100 p-0">
-                                                        <div class="text-area">
-                                                            <textarea id="input-text"></textarea>
-                                                        </div>
-                                                        <button id="submit" title="send"><i class="fa fa-paper-plane"></i></button>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                    <div class="row p-0 m-0 vh-52">
+                                        <div class="col h-100 message">
+                                            <ul class="chatting-area" id="chat-text">
+                                                {% for message in messages %}
+                                                    <li class="{{message.type}}">
+                                                        <p>{{message.context}}</p>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row p-0 m-0 vh-8">
+                                        <div class="col message-text-container h-100 w-100 p-0">
+                                            <div class="text-area">
+                                                <textarea id="input-text"></textarea>
                                             </div>
+                                            <button id="submit" title="send"><i class="fa fa-paper-plane"></i></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>	
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     {% comment %} Get data for username and chatbox name{% endcomment %}
     {{ user_id|json_script:"userId" }}
     {{ chat_room.id|json_script:"roomId" }}
