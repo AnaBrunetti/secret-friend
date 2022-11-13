@@ -3,70 +3,60 @@
 {% load static %}
 
 {% block content %}
-<body>
-<div class="theme-layout">
-	<section>
-		<div class="gap-50-15 col-lg-12 no-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="contct-info">
-							<div class="contact-form">
-								<div class="cnt-title">
-									<span>Nos envie uma mensagem</span>
-									<i><img src="images/envelop.png" alt=""></i>
-								</div>
-								<form method="post">
-									{% csrf_token %}
-									<div class="form-group">	
-										<input type="text" id="id_contact_subject" name="contact_subject" required="required"/>
-										<label class="control-label" for="id_contact_subject" >Assunto</label><i class="mtrl-select"></i>
-									</div>
-									<div class="form-group">	
-										<textarea rows="4" id="id_contact_message" name="contact_message" required="required"></textarea>
-										<label class="control-label" for="id_contact_message">Mensagem</label><i class="mtrl-select"></i>
-									</div>
-									<div class="submit-btns">
-										<button type="submit" class="btn btn-primary btn-block mt-4">Enviar Mensagem</button>
-									</div>
-								</form>
-								{% if messages %}
-								<ul class="messages">
-									{% for message in messages %}
-									<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-									{% endfor %}
-								</ul>
-								{% endif %}
-							</div>
-							<div class="cntct-adres">
-								<h3>Informações de Contato</h3>
-								<ul>
-									<li>
-										<i class="ti-location-pin"></i>
-										<span>Magda Perona Frossard, 730, 12 - Nova Aliança - Ribeirão Preto</span>
-									</li>
-									<li>
-										<i class="fa fa-mobile-phone"></i>
-										<span>+55(16) 997397704</span>
-									</li>
-									<li>
-										<i class="fa fa-envelope-o"></i>
-										<span><a href="mailto:carol-brunetti@hotmail.com">carol-brunetti@hotmail.com</a></span>
-									</li>
-								</ul>
-							</div>
+<section class="gray-bg">
+	<div class="container-fluid" style="padding: 15.3vh 0;">
+		<div class="row w-100 m-0">
+			<div class="col-0 col-sm-1 col-lg-1 m-0 p-0"></div>
+			<div class="col-12 col-sm-10 col-lg-10">
+				<div class="contct-info">
+					<div class="contact-form">
+						<div class="cnt-title">
+							<span>Nos envie uma mensagem</span>
+							<i><img src="images/envelop.png" alt=""></i>
 						</div>
+						<form method="post">
+							{% csrf_token %}
+							<div class="form-group">	
+								<input type="text" id="id_contact_subject" name="contact_subject" required="required"/>
+								<label class="control-label" for="id_contact_subject" >Assunto</label><i class="mtrl-select"></i>
+							</div>
+							<div class="form-group">	
+								<textarea rows="4" id="id_contact_message" name="contact_message" required="required"></textarea>
+								<label class="control-label" for="id_contact_message">Mensagem</label><i class="mtrl-select"></i>
+							</div>
+							<div class="submit-btns">
+								<button type="submit" class="btn btn-primary btn-block mt-4">Enviar Mensagem</button>
+							</div>
+						</form>
+						{% if messages %}
+						<ul class="messages">
+							{% for message in messages %}
+							<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
+					</div>
+					<div class="cntct-adres">
+						<h3>Informações de Contato</h3>
+						<ul>
+							<li>
+								<i class="ti-location-pin"></i>
+								<span>Magda Perona Frossard, 730, 12 - Nova Aliança - Ribeirão Preto</span>
+							</li>
+							<li>
+								<i class="fa fa-mobile-phone"></i>
+								<span>+55(16) 997397704</span>
+							</li>
+							<li>
+								<i class="fa fa-envelope-o"></i>
+								<span><a href="mailto:carol-brunetti@hotmail.com">carol-brunetti@hotmail.com</a></span>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
+			<div class="col-0 col-sm-1 col-lg-1 m-0 p-0"></div>
 		</div>
-	</section><!-- contact info -->
-
-</div>
-	<script src="js/strip.pkgd.min.js"></script>
-	<script src="js/script.js"></script>
-	<script src="js/map-init.js"></script>
-</body>	
-
-</html>
+	</div>
+</section>
 {% endblock %}

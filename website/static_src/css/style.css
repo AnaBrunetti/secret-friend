@@ -57,12 +57,14 @@ Last change:  4/september/18
 ===============*/
 html,body{
 	font-family: "Muli", "Segoe Ui";
+    height: 100%;
 }
+
 body {
     float: left;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0 0 76px 0;
     overflow-x: hidden;
     color: #545454;
 }
@@ -641,9 +643,9 @@ header.sticky {
 .topbar {
     background: #fff;
     display: block;
-    height: 8.5vh;
     padding: 0 48px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    height: 60px;
     z-index: 99;
     position: relative;
 }
@@ -1286,6 +1288,7 @@ header.sticky {
 
 .central-meta {
     background: #fdfdfd none repeat scroll 0 0;
+    box-shadow: 0px 10px 10px #e6e6e6;
     border: 1px solid #ede9e9;
     border-radius: 3px;
     display: inline-block;
@@ -2078,6 +2081,7 @@ footer {
     padding: 10px 0 10px 0;
     width: 100%;
     position: relative;
+    height: 76px;
 }
 
 footer::before {
@@ -2947,7 +2951,6 @@ li.google {
     float: left;
     position: relative;
     width: 100%;
-    margin-bottom: 50px;
 }
 
 .contact-form {
@@ -10142,12 +10145,12 @@ aside.sidebar.full-style {
     height: 11vh!important;
 }
 
-.vh-50 {
-    height: 50vh!important;
+.vh-52 {
+    height: 52vh!important;
 }
 
-.vh-80 {
-    height: 80vh!important;
+.vh-82 {
+    height: 82vh!important;
 }
 
 .h-10 {

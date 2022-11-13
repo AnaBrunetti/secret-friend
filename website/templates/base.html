@@ -35,9 +35,8 @@
 				<li><a href="{% url 'contact' %}" title="">Contato</a></li>
 			</ul>
 		</nav>
-	</div><!-- responsive header -->
-
-    <header class="vh-8-5">
+	</div>
+    <header>
         <div class="topbar stick">
             <div class="row">
                 <div class="col-2 text-center p-10">
@@ -72,15 +71,13 @@
             </div>
         </div>
     </header>
-
-    <div class="container-fluid p-0">
-        {% block content %}{% endblock content %}
-    </div>
+    {% block content %}{% endblock content %}
     <footer class="text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3">
-            Copyright © 2022 - Amigo Secreto. 
-          <a href="{% url 'terms' %}">  <b>Termos de Uso</b></a>
+            <p>
+                Copyright © 2022 - Amigo Secreto. <a href="{% url 'terms' %}"><b>Termos de Uso</b></a>
+            </p>
         </div>
         <!-- Copyright -->
     </footer>
