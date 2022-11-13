@@ -2,10 +2,6 @@
 
 [Master Stylesheet]
 
-Project Name: winku (HMTL Template)
-Version:    1.1
-Last change:  4/september/18
-
 ====INDEX=====
 
 01- general styling
@@ -648,14 +644,6 @@ header.sticky {
     height: 60px;
     z-index: 99;
     position: relative;
-}
-
-.logo {
-    display: inline-block;
-    vertical-align: inherit;
-    width: 15%;
-    position: relative;
-    z-index: 10;
 }
 
 .logout {
@@ -2232,22 +2220,29 @@ footer .logo {
     width: 100%;
 }
 
-.logo > a {
+.logo {
     display: inline-block;
-    vertical-align: middle;
+    width: 35%;
 }
 
-.logo > a > img {
-    height: 40px;
+.logo > span {
+    font-family: hobo std;
+    font-size: 200px;
+    position: relative;
 }
 
-.logo > h4 {
-    display: inline-block;
-    font-family: HoboStd;
-    margin-bottom: 0;
-    vertical-align: middle;
-    width: 80%;
-    color: #3e3e3e;
+.logo > span::before,
+.logo > span::after {
+    background: #0a98dc none repeat scroll 0 0;
+    border: 16px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
+    content: "";
+    height: 180px;
+    left: -42px;
+    position: absolute;
+    top: 20px;
+    width: 180px;
+    z-index: -1;
 }
 
 /*--- apps widget ---*/
@@ -8137,13 +8132,13 @@ h3.resutl-found > span {
 
 /*--- about page ---*/
 
-.about-winku {
+.about-us {
     float: left;
     position: relative;
     width: 100%;
 }
 
-.about-winku > h4 {
+.about-us > h4 {
     display: inline-block;
     font-size: 28px;
     font-weight: bold;
@@ -8152,7 +8147,7 @@ h3.resutl-found > span {
     color: #333;
 }
 
-.about-winku > span {
+.about-us > span {
     display: inline-block;
     margin-bottom: 20px;
     width: 100%;

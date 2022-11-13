@@ -27,13 +27,12 @@ class TermsView(TemplateView):
     template_name = 'general/terms.html'
 
 
-class ContactView(TemplateView, FormView, SuccessMessageMixin):
+class ContactView(TemplateView, FormView):
     template_name = 'general/contact.html'
     form_class = ContactForm
-    success_message = 'Sua mensagem foi enviada com sucesso!'
     
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, 'form submission success')
+        messages.add_message(self.request, messages.INFO, 'Sua mensagem foi enviada com sucesso!')
         return reverse_lazy('contact')
     
     def post(self, request, *args, **kwargs):
