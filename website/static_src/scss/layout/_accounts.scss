@@ -38,13 +38,13 @@
             width: 100%;
             
             .login-reg-area {
-                width: 90vh;
+                width: 80%;
                 background: $white;
                 box-shadow: 0 0 35px $box-shadow;
                 display: block;
                 float: none;
                 left: 50%;
-                padding: 35px 55px;
+                padding: 25px 30px;
                 position: absolute;
                 top: 50%;
                 transform: translate(-50%, -50%);
@@ -88,4 +88,17 @@
     border: 1px solid $bg-white;
     padding: 6px 12px;
     border-top: none;
+}
+
+.help-block {
+    color: #dc3545;
+}
+
+.error {
+    border: 1px solid #dc3545 !important;
+}
+
+.disabled {
+    background-color: #e9ecef;
+    opacity: 1;
 }

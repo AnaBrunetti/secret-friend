@@ -11,11 +11,14 @@ from chat.models import Chat, ChatRoom
 def create_chat_bot(sender, instance, created, **kwargs):
     if created:
         if not User.objects.filter(role=User.ROLE_BOT).exists():
-            User.objects.create(
+            user_fields = {
+                "role": User.ROLE_BOT,
+            }
+            User.objects.create_user(
                 username=settings.BOT_NAME,
                 email=settings.BOT_EMAIL,
-                role=User.ROLE_BOT,
-                password=settings.BOT_PASSWORD
+                password=settings.BOT_PASSWORD,
+                **user_fields
             )
 
         bot_user = User.objects.filter(role=User.ROLE_BOT).first()

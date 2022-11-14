@@ -1,0 +1,211 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block content %}
+	<div class="thema-login">
+		<div class="container-fluid">
+			<div class="row vh-100">
+				<div class="col-sm-12 col-md-4 col-lg-5 row-left p-0">
+					<div class="style-left">
+						<div class="land">
+							<h1>Amigo Secreto</h1>
+							<p>
+								Ajuda psicologica anonima.
+							</p>
+							<div class="friend-logo">
+								<span><img src="{% static 'website/img/wink.png' %}" alt=""></span>
+							</div>
+							<a href="#">Siga-nos</a>
+						</div>	
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-8 col-lg-7 row-right p-0">
+					<div class="login-reg-bg">
+						<div class="login-reg-area">
+							<div class="register">
+								<h2><b>Inscrever-se</b></h2>
+								<div class="tab">
+									<a href="{% url 'register' %}"><button class="tablinks">Paciente</button></a>
+									<a href="{% url 'profissiona_register' %}"><button class="tablinks active">Profissional</button></a>
+								</div>
+								<form method="POST" enctype="multipart/form-data">
+									{% csrf_token %}
+									
+									<div class="row m-0">
+										<div class="col-12 py-1">
+											<div class="row m-0">
+												<div class="col-6 p-0 pr-2">
+													<!-- Username input -->
+													<label class="form-label" for="{{ form.username.auto_id }}">Usuário</label>
+													{{ form.username }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.username.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+												<div class="col-6 p-0">
+													<!-- CRM input -->
+													<label class="form-label" for="{{ form.crm.auto_id }}">CRM</label>
+													{{ form.crm }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.crm.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 py-1">
+											<div class="row m-0">
+												<div class="col-4 p-0">
+													<!-- Nome input -->
+													<label class="form-label" for="{{ form.first_name.auto_id }}">Nome</label>
+													{{ form.first_name }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.first_name.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+												<div class="col-4 px-2">
+													<!-- Last Name input -->
+													<label class="form-label" for="{{ form.last_name.auto_id }}">Sobrenome</label>
+													{{ form.last_name }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.last_name.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+												<div class="col-4 p-0">
+													<!-- Phone input -->
+													<label class="form-label" for="{{ form.phone.auto_id }}">Telefone</label>
+													{{ form.phone }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.phone.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 py-1">
+											<div class="row m-0">
+												<div class="col-6 p-0 pr-2">
+													<label for="{{ form.document.auto_id }}" class="form-label">Documento</label>
+													{{ form.document }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.document.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+												<div class="col-6 p-0">
+													<!-- Picture input -->
+													<label class="form-label" for="{{ form.picture.auto_id }}">Foto</label>
+													{{ form.picture }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.picture.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 py-1">
+											<div class="row m-0">
+												<div class="col-6 p-0 pr-2">
+													<!-- Date of Birth input -->
+													<label class="form-label" for="{{ form.date_of_birth.auto_id }}">Data de nascimento</label>
+													<input type="date" name="{{ form.date_of_birth.name }}" value="{{ form.date_of_birth.value }}" class="form-control" id="{{ form.date_of_birth.auto_id }}">
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.date_of_birth.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+
+												<div class="col-6 p-0">
+													<!-- Genero input -->
+													<label class="form-label" for="{{ form.gender.auto_id }}">Gênero</label>
+													{{ form.gender }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.gender.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 py-1">
+											<div class="row m-0">
+												<div class="col-6 p-0 pr-2">
+													<!-- Repeat Password input -->
+													<label class="form-label" for="{{ form.password1.auto_id }}">Senha</label>
+													<input id="{{ form.password1.auto_id }}" class="form-control {% if form.password1.errors %}error{% endif %}" type="password" name="{{ form.password1.name }}" value="{{ form.password1.value|default:'' }}" required>
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.password1.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+
+												<div class="col-6 p-0">
+													<!-- Repeat Password input -->
+													<label class="form-label" for="{{ form.password2.auto_id }}">Confirmação de senha</label>
+													<input id="{{ form.password2.auto_id }}" class="{% if form.password2.errors %}error{% endif %} form-control" type="password" name="{{ form.password2.name }}" value="{{ form.password2.value|default:'' }}" required/>
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.password2.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+											</div>
+										</div>
+									
+										{{ form.role }}
+
+										<!-- Submit button -->
+										<div class="col-6 d-inline-block">
+											<button type="submit" class="btn btn-primary btn-block mt-2">Registra-se</button>
+										</div>
+										<div class="col-6 d-inline-block">
+											<a href="{% url 'login' %}"><button type="button" class="btn btn-secundary btn-block mt-2">Login</button></a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

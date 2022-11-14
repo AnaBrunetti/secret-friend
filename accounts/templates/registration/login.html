@@ -6,7 +6,7 @@
 	<div class="thema-login">
 		<div class="container-fluid">
 			<div class="row vh-100">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 row-left p-0">
+				<div class="col-12 col-md-6 col-lg-6 row-left p-0">
 					<div class="style-left">
 						<div class="land">
 							<h1>Amigo Secreto</h1>
@@ -20,28 +20,38 @@
 						</div>	
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 row-right p-0">
+				<div class="col-12 col-md-6 col-lg-6 row-right p-0">
 					<div class="login-reg-bg">
 						<div class="login-reg-area">
 							<h2><b>Login</b></h2>
 							<br>
 							<form method="POST">
 								{% csrf_token %}
-								<!-- Username input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_username">Usuário</label>
-									<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
-								</div>
+								<div class="row m-0">
+									<div class="col-12 py-1">
+										<!-- Username input -->
+										<div class="form-outline mb-4">
+											<label class="form-label" for="id_username">Usuário</label>
+											<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
+										</div>
+									</div>
 
-								<!-- Password input -->
-								<div class="form-outline mb-4">
-									<label class="form-label" for="id_password">Senha</label>
-									<input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password"/>
+									<div class="col-12 py-1">
+										<!-- Password input -->
+										<div class="form-outline mb-4">
+											<label class="form-label" for="id_password">Senha</label>
+											<input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password"/>
+										</div>
+									</div>
+								
+									<!-- Submit button -->
+									<div class="col-6 d-inline-block">
+										<button type="submit" class="btn btn-primary btn-block mt-2">Login</button>
+									</div>
+									<div class="col-6 d-inline-block">
+										<a href="{% url 'register' %}"><button type="button" class="btn btn-secundary btn-block mt-2">Registra-se</button></a>
+									</div>
 								</div>
-							  
-								<!-- Submit button -->
-								<button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
-								<button type="button" class="btn btn-secundary btn-block mb-4"><a href="{% url 'register' %}">Registra-se</a></button>
 							</form>
 						</div>
 					</div>
