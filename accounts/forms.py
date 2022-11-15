@@ -1,11 +1,19 @@
 from django import forms
-from django.forms import FileField
-from django.forms.models import model_to_dict, fields_for_model
-from django.contrib.auth.forms import UserCreationForm
+from django.forms import ValidationError
+from django.forms.models import fields_for_model
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import password_validation
 from django.utils.translation import ugettext_lazy as _
 
 from accounts.models import User, Profissional
+
+
+class CustomUserForm(AuthenticationForm):
+    
+    def confirm_login_allowed(self, user):
+        if user.role == User.ROLE_PROFESSIONAL and not user.profissional.is_approved:
+            self.add_error("username", "Profissional pendente de aprovação.")
+        return super(CustomUserForm, self).confirm_login_allowed(user)
 
 
 class RegisterForm(UserCreationForm):

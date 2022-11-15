@@ -11,13 +11,17 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-from accounts.forms import RegisterForm, ProfissionalRegisterForm, PatientEditForm
+from accounts.forms import CustomUserForm, RegisterForm, ProfissionalRegisterForm, PatientEditForm
 from accounts.models import User
 from accounts.selenium import get_recaptcha_token
 
 COLORS = ['vermelho', 'verde', 'azul', 'preto', 'branco', 'marrom', 'laranja', 'amarelo', 'cinza']
 ANIMALS = ['peixe', 'passaro', 'gato', 'cachorro', 'leao', 'rapossa', 'urso', 'sapo', 'morcego', 'tubarao']
 NUMBERS_RANGE = [0, 999]
+
+
+class CutomLoginView(views.LoginView):
+    form_class = CustomUserForm
 
 
 class RegisterView(CreateView):

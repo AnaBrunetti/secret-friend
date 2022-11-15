@@ -28,28 +28,38 @@
 							<form method="POST">
 								{% csrf_token %}
 								<div class="row m-0">
-									<div class="col-12 py-1">
+									<div class="col-12 py-4">
 										<!-- Username input -->
-										<div class="form-outline mb-4">
-											<label class="form-label" for="id_username">Usuário</label>
-											<input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
-										</div>
+										<label class="form-label" for="id_username">Usuário</label>
+										<input class="{% if form.username.errors %}error{% endif %} form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"/>
+										<span class="help-block">
+											<ul class="m-0">
+												{% for error in form.username.errors %} 
+													<li>{{error}}</li>
+												{% endfor %}
+											</ul>
+										</span>
 									</div>
 
-									<div class="col-12 py-1">
+									<div class="col-12 py-4">
 										<!-- Password input -->
-										<div class="form-outline mb-4">
-											<label class="form-label" for="id_password">Senha</label>
-											<input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password"/>
-										</div>
+										<label class="form-label" for="id_password">Senha</label>
+										<input class="{% if form.password.errors %}error{% endif %} form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password"/>
+										<span class="help-block">
+											<ul class="m-0">
+												{% for error in form.password.errors %} 
+													<li>{{error}}</li>
+												{% endfor %}
+											</ul>
+										</span>
 									</div>
 								
 									<!-- Submit button -->
 									<div class="col-6 d-inline-block">
-										<button type="submit" class="btn btn-primary btn-block mt-2">Login</button>
+										<button type="submit" class="btn btn-primary btn-block mt-5">Login</button>
 									</div>
 									<div class="col-6 d-inline-block">
-										<a href="{% url 'register' %}"><button type="button" class="btn btn-secundary btn-block mt-2">Registra-se</button></a>
+										<a href="{% url 'register' %}"><button type="button" class="btn btn-secundary btn-block mt-5">Registra-se</button></a>
 									</div>
 								</div>
 							</form>
