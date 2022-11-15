@@ -4,7 +4,8 @@ from accounts.views import (
     RegisterView,
     ProfissionaRegisterView,
     PasswordChangeView,
-    ProfileEditView,
+    ProfessionalEditView,
+    PatientEditView,
 )
 
 
@@ -23,5 +24,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     
-    path("edit_profile/", ProfileEditView.as_view(), name="edit-profile"),
+    path("professional_edit_profile/", ProfessionalEditView.as_view(), name="professional_edit_profile"),
+    path("patient_edit_profile/", PatientEditView.as_view(), name="patient_edit_profile"),
 ]

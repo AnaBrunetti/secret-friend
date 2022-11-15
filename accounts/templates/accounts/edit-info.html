@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+	<div class="thema-login">
+		<div class="container-fluid">
+			
+				<div class="col-sm-12 row-right">
+					<div class="login-reg-bg">
+						<div class="login-reg-area">
+							<div class="register">
+								<h2><b>Editar Informações</b></h2>
+								<div class="tab">
+								</div>
+								<form method="POST">
+									{% csrf_token %}
+
+									<div class="row m-0">
+										<div class="col-12 py-1">
+											<!-- Username input -->
+											<label class="form-label" for="{{ form.username.auto_id }}">Usuário</label>
+											<input id="{{ form.username.auto_id }}" class="form-control  {% if form.username.errors %}error{% endif %}" type="text" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required disabled/>
+											<span class="help-block">
+												<ul class="m-0">
+													{% for error in form.username.errors %} 
+														<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</span>
+										</div>
+
+										<div class="col-6 py-1">
+											<!-- Genero input -->
+											<label class="form-label" for="{{ form.gender.auto_id }}">Gênero</label>
+											{{form.gender}}
+											<span class="help-block">
+												<ul class="m-0">
+													{% for error in form.gender.errors %} 
+														<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</span>
+										</div>
+										
+
+										<div class="col-6 py-1">
+											<!-- Date of Birth input -->
+											<label class="form-label" for="{{ form.date_of_birth.auto_id }}">Data de nascimento</label>
+											<input id="{{ form.date_of_birth.auto_id }}" class="form-control {% if form.date_of_birth.errors %}error{% endif %}" type="date" name="{{ form.date_of_birth.name }}" value="{{ form.date_of_birth.value|default:'' }}" required/>
+											<span class="help-block">
+												<ul class="m-0">
+													{% for error in form.date_of_birth.errors %} 
+														<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</span>
+										</div>
+								
+										<!-- Submit button -->
+										<div class="col-6 d-inline-block">
+											<button type="reset" class="btn btn-primary btn-block mt-2">Cancelar</button>
+										</div>
+										<div class="col-6 d-inline-block">
+											<button type="submit" class="btn btn-secundary btn-block mt-2">Editar Informações</button></a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+{% endblock %}
