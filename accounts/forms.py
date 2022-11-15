@@ -57,7 +57,7 @@ class ProfissionalRegisterForm(forms.ModelForm):
             if self.fields[field] and hasattr(self.fields[field], 'widget') and hasattr(self.fields[field].widget, 'attrs'):    
                 self.fields[field].widget.attrs['class'] = 'form-control'
         self.fields['phone'].widget.attrs['placeholder'] = "(99) 9999-9999"
-        self.fields['crm'].widget.attrs['placeholder'] = "999999-XX"
+        self.fields['cpf'].widget.attrs['placeholder'] = "999.999.999-99"
         self.fields['date_of_birth'].widget.attrs['type'] = "date"
         
 
@@ -89,7 +89,7 @@ class ProfissionalRegisterForm(forms.ModelForm):
             except forms.ValidationError as error:
                 self.add_error('password2', error)
 
-    def save(self, commit=True, *args, **kwargs):
+    def save(self, commit=True, is_approved=False, *args, **kwargs):
         user_fields = {
             "first_name": self.cleaned_data['first_name'],
             "last_name": self.cleaned_data['last_name'],
@@ -104,6 +104,7 @@ class ProfissionalRegisterForm(forms.ModelForm):
         )
         profissional = super(ProfissionalRegisterForm, self).save(commit=False)
         profissional.user = user
+        profissional.is_approved = is_approved
         if commit:
             profissional.save()
         return profissional

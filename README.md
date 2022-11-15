@@ -27,3 +27,12 @@
 
 ## Trabalhando com o gulp
 https://gulpjs.com/docs/en/getting-started/quick-start/
+
+## Caso precise baixar o drive do chrome novamente é preciso rodar o seguinte código
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
+
+Link referencia selenium: https://dev.to/mdrhmn/web-scraping-using-django-and-selenium-3ecg
+https://github.com/mdrhmn/dj-selenium

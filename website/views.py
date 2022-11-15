@@ -4,32 +4,34 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 
 from website.forms import ContactForm
 
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
+class AboutView(TemplateView):
+    template_name = 'general/about.html'
     
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(HomeView, self).dispatch(*args, **kwargs)
-    
-
-class AboutView(TemplateView):
-    template_name = 'general/about.html'
+        return super(AboutView, self).dispatch(*args, **kwargs)
     
 
 class TermsView(TemplateView):
     template_name = 'general/terms.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TermsView, self).dispatch(*args, **kwargs)
 
 class ContactView(TemplateView, FormView):
     template_name = 'general/contact.html'
     form_class = ContactForm
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ContactView, self).dispatch(*args, **kwargs)
     
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, 'Sua mensagem foi enviada com sucesso!')

@@ -48,12 +48,12 @@
 													</span>
 												</div>
 												<div class="col-6 p-0">
-													<!-- CRM input -->
-													<label class="form-label" for="{{ form.crm.auto_id }}">CRM</label>
-													{{ form.crm }}
+													<!-- cpf input -->
+													<label class="form-label" for="{{ form.cpf.auto_id }}">CPF</label>
+													{{ form.cpf }}
 													<span class="help-block">
 														<ul class="m-0">
-															{% for error in form.crm.errors %} 
+															{% for error in form.cpf.errors %} 
 																<li>{{error}}</li>
 															{% endfor %}
 														</ul>
@@ -198,6 +198,15 @@
 										</div>
 										<div class="col-6 d-inline-block">
 											<a href="{% url 'login' %}"><button type="button" class="btn btn-secundary btn-block mt-2">Login</button></a>
+										</div>
+										<div class="col-12 mt-2">
+											{% if messages %}
+												{% for message in messages %}
+													<div class="alert {{ message.tags }}" role="alert">
+														{{ message }}
+													</div>
+												{% endfor %}
+											{% endif %}
 										</div>
 									</div>
 								</form>

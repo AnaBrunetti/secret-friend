@@ -79,6 +79,16 @@ class Profissional(TimestampModel):
         help_text=_("Exemplo de formato: 999999-XX"),
         validators=[
             RegexValidator(regex="^\d{2,6}-[A-Z]{2}$", message="CRM inválido", code="invalid_crm")
+        ],
+        blank=True,
+        null=True
+    )
+    cpf = models.CharField(
+        verbose_name=_("CPF"),
+        max_length=255,
+        help_text=_("Exemplo de formato: 999.999.999-99"),
+        validators=[
+            RegexValidator(regex="^\d{3}.\d{3}.\d{3}-\d{2}$", message="CRM inválido", code="invalid_cpf")
         ]
     )
     is_approved = models.BooleanField(
