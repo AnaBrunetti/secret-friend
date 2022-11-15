@@ -39,7 +39,7 @@
                             <div class="col-7 col-sm-8 col-lg-9 message-box p-10">
                                 <div class="peoples-mesg-box h-100 w-100 p-0">
                                     <div class="row p-0 m-0 vh-11">
-                                        <div class="col conversation-head h-100">
+                                        <div class="col-10 conversation-head">
                                             <figure>
                                                 {% if you_chat_user.role == bot %}
                                                     <img src={% static 'website/img/logo.png' %} alt="">
@@ -50,6 +50,16 @@
                                                 {% endif %}
                                             </figure>
                                             <span>{{you_chat_user.username}}</span>
+                                        </div>
+                                        <div class="col-2 conversation-head">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-align-justify"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{% url 'finish_chat' %}">Encerrar Relação</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row p-0 m-0 vh-52">
