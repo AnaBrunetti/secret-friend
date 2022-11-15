@@ -27,7 +27,11 @@
 				<li><span>Configurações da Conta</span>
 					<ul>
 						<li><a href="{% url 'password_change' %}" title="">Editar Senha</a></li>
-						<li><a href="edit-profile.html" title="">Editar Perfil</a></li>
+                        {% if user.role == 'patient' %}
+                            <li><a href="{% url 'patient_edit_profile' %}" title="">Editar Perfil</a></li>
+						{% elif user.role == 'professional' %}
+                            <li><a href="{% url 'professional_edit_profile' %}" title="">Editar Perfil</a></li>
+                        {% endif %}
 					</ul>
 				</li>
 				<li><a href="{% url 'about' %}" title="">Sobre nós</a></li>
@@ -52,7 +56,11 @@
                                 <a href="#" title="">Configurações da Conta</a>
                                 <ul>
                                     <li><a href="{% url 'password_change' %}" title="">Editar Senha</a></li>
-                                    <li><a href="edit-profile.html" title="">Editar Perfil</a></li>
+                                    {% if user.role == 'patient' %}
+                                        <li><a href="{% url 'patient_edit_profile' %}" title="">Editar Perfil</a></li>
+                                    {% elif user.role == 'professional' %}
+                                        <li><a href="{% url 'professional_edit_profile' %}" title="">Editar Perfil</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
                             <li>

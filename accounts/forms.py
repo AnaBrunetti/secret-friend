@@ -107,3 +107,21 @@ class ProfissionalRegisterForm(forms.ModelForm):
         if commit:
             profissional.save()
         return profissional
+
+
+class PatientEditForm(UserCreationForm):
+    
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].required = False
+        self.fields['username'].widget.attrs['disabled'] = True
+        self.fields['gender'].required = True
+        self.fields['gender'].widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = User
+        fields = ['username', 'date_of_birth', 'gender']
+        widgets = {
+            'role': forms.HiddenInput(),
+            'gender': forms.Select(),
+        }
