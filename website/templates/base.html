@@ -13,41 +13,47 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <div class="responsive-header">
-		<div class="mh-head first sticky">
-			<span class="mh-btns-left">
-				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
-			</span>
-			<span class="mh-text">
-				<a href="#" title=""><img src="images/logo2.png" alt=""></a>
-			</span>
-		</div>
-		<nav id="menu" class="res-menu">
-			<ul>
-				<li><span>Configurações da Conta</span>
-					<ul>
-						<li><a href="{% url 'password_change' %}" title="">Editar Senha</a></li>
-                        {% if user.role == 'patient' %}
-                            <li><a href="{% url 'patient_edit_profile' %}" title="">Editar Perfil</a></li>
-						{% elif user.role == 'professional' %}
-                            <li><a href="{% url 'professional_edit_profile' %}" title="">Editar Perfil</a></li>
-                        {% endif %}
-					</ul>
-				</li>
-				<li><a href="{% url 'about' %}" title="">Sobre nós</a></li>
-				<li><a href="{% url 'contact' %}" title="">Contato</a></li>
-			</ul>
-		</nav>
-	</div>
     <header>
+        <nav class="responsive-header navbar-base">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" title="" href="{% url 'chat' %}">
+                <img class="logo-img" src={% static 'website/img/logo2.png' %} alt="">
+            </a>
+        
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="dark-blue-text">
+                    <i class="fa fa-align-justify"></i>
+                </span>
+            </button>
+        
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'password_change' %}" title="">Editar Senha</a></li>
+                    {% if user.role == 'patient' %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'patient_edit_profile' %}" title="">Editar Perfil</a></li>
+                    {% elif user.role == 'professional' %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'professional_edit_profile' %}" title="">Editar Perfil</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}" title="">Sobre nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}" title="">Contato</a></li>
+                </ul>
+                <!-- Links -->
+        
+            </div>
+            <!-- Collapsible content -->
+        
+        </nav>
         <div class="topbar stick">
             <div class="row">
                 <div class="col-2 text-center p-10">
-                    <div class="logo">
-                        <a title="" href="#">
-                            <img src={% static 'website/img/logo2.png' %} alt="">
-                        </a>
-                    </div>
+                    <a title="" href="{% url 'chat' %}">
+                        <img class="logo-img" src={% static 'website/img/logo2.png' %} alt="">
+                    </a>
                 </div>
                 <div class="col-8">
                     <div class="top-area">
