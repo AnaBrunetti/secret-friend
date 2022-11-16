@@ -4,7 +4,7 @@
 
 {% block content %}
     <section>
-        <div class="gray-bg" style="padding: 4vh 0;">
+        <div class="gray-bg" style="padding: 5vh 0;">
             <div class="container-fluid">
                 <div class="central-meta m-0 p-0">
                     <div class="messages">
@@ -38,8 +38,8 @@
                             </div>
                             <div class="col-7 col-sm-8 col-lg-9 message-box p-10">
                                 <div class="peoples-mesg-box h-100 w-100 p-0">
-                                    <div class="row p-0 m-0 vh-11">
-                                        <div class="col-10 conversation-head">
+                                    <div class="row p-0 m-0" style="height: 70px;">
+                                        <div class="col-6 col-sm-7 col-lg-10 conversation-head">
                                             <figure>
                                                 {% if you_chat_user.role == bot %}
                                                     <img src={% static 'website/img/logo.png' %} alt="">
@@ -51,21 +51,46 @@
                                             </figure>
                                             <span>{{you_chat_user.username}}</span>
                                         </div>
-                                        <div class="col-2 conversation-head">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa fa-align-justify"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="{% url 'finish_chat' %}">Encerrar Relação</a>
+                                        <div class="col-6 col-sm-5 col-lg-2 conversation-head text-align-right">
+                                            {% comment %} <!--Navbar-->
+                                            <nav class="navbar white navbar-6 w-100">
+                                                <!-- Collapsible content -->
+                                                <div class="collapse" id="navbarSupportedContent12" style="position: absolute; right: 20%;">
+                                                    <!-- Links -->
+                                                    <ul class="navbar-nav mr-auto">
+                                                        <li class="nav-item active">
+                                                        <a class="nav-link" href="{% url 'finish_chat' %}">Encerrar Relação <span class="sr-only">(current)</span></a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Links -->
                                                 </div>
-                                            </div>
+                                                <!-- Collapsible content -->
+                                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent12"
+                                                aria-controls="navbarSupportedContent12" aria-expanded="false" aria-label="Toggle navigation">
+                                                    <span class="navbar-toggler-icon"></span>
+                                                </button>
+                                            </nav>
+                                            <!--/.Navbar--> {% endcomment %}
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="chat_room_id" value="{{chat_room.id}}"/>
+                                                <a onclick="this.parentNode.submit()" class="nav-link" href="#">
+                                                    <span class="finish-chat">Encerrar Relação</span>
+                                                </a>
+                                            </form>
                                         </div>
                                     </div>
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert {{ message.tags }}" role="alert">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
                                     <div class="row p-0 m-0 vh-52">
                                         <div class="col h-100 message">
                                             <ul class="chatting-area" id="chat-text">
-                                                {% for message in messages %}
+                                                {% for message in peoples_messages %}
                                                     <li class="{{message.type}}">
                                                         <p>{{message.context}}</p>
                                                     </li>

@@ -1,6 +1,9 @@
 from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import BaseFormView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -9,8 +12,9 @@ from accounts.models import User
 from chat.models import Chat, ChatRoom
 
 
-class ChatView(TemplateView):
+class ChatView(TemplateView, BaseFormView):
     template_name = "chat/chatbox.html"
+    form_class = None
     
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -22,6 +26,9 @@ class ChatView(TemplateView):
         context_data["bot"] = User.ROLE_BOT
         context_data["profissional"] = User.ROLE_PROFESSIONAL
         return context_data
+    
+    def get_form(self):
+        return None
     
     def get(self, request, *args, **kwargs):
         chat_room = None
@@ -52,11 +59,29 @@ class ChatView(TemplateView):
         
         kwargs["me_chat_user"] = me_chat_user
         kwargs["you_chat_user"] = you_chat_user
-        kwargs["messages"] = chat_room.get_messages(request.user)
+        kwargs["peoples_messages"] = chat_room.get_messages(request.user)
         kwargs["peoples"] = User.objects.filter(chats__users=me_chat_user).exclude(id=me_chat_user.id).distinct()
         kwargs["chat_room"] = chat_room
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
+
+    def get_success_url(self, message=None):
+        if message:
+            messages.add_message(self.request, messages.INFO, 'Relação encerrada!')
+        return reverse_lazy('chat')
+
+    def post(self, request, *args, **kwargs):
+        message = None
+        if request.POST.get("chat_room_id"):
+            if request.user.role == User.ROLE_BOT:
+                message = _('Não é possível encerrar relação com o Bot!')
+            else:
+                chat_room = ChatRoom.objects.get(pk=int(request.POST.get("chat_room_id")))            
+                chat_room.messages.all().delete()
+                chat_room.chat.delete()
+                chat_room.delete()
+                message = _('Relação encerrada!')
+        return HttpResponseRedirect(self.get_success_url(message=message))
 
 
 class AddChatView(ListView):

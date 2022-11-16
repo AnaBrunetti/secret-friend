@@ -73,15 +73,10 @@ class Profissional(TimestampModel):
         upload_to="user/",
         max_length=255
     )
-    crm = models.CharField(
-        verbose_name=_("Número de CRM"),
+    register = models.CharField(
+        verbose_name=_("Número de registro"),
         max_length=255,
-        help_text=_("Exemplo de formato: 999999-XX"),
-        validators=[
-            RegexValidator(regex="^\d{2,6}-[A-Z]{2}$", message="CRM inválido", code="invalid_crm")
-        ],
-        blank=True,
-        null=True
+        help_text=_("Exemplo de formato: 999999"),
     )
     cpf = models.CharField(
         verbose_name=_("CPF"),

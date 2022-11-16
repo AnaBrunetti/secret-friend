@@ -21,9 +21,6 @@ class AboutView(TemplateView):
 class TermsView(TemplateView):
     template_name = 'general/terms.html'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(TermsView, self).dispatch(*args, **kwargs)
 
 class ContactView(TemplateView, FormView):
     template_name = 'general/contact.html'

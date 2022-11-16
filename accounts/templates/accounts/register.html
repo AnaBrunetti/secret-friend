@@ -63,7 +63,7 @@
 										<div class="col-6 py-1">
 											<!-- Date of Birth input -->
 											<label class="form-label" for="{{ form.date_of_birth.auto_id }}">Data de nascimento</label>
-											<input id="{{ form.date_of_birth.auto_id }}" class="form-control {% if form.date_of_birth.errors %}error{% endif %}" type="date" name="{{ form.date_of_birth.name }}" value="{{ form.date_of_birth.value|default:'' }}" required/>
+											{{ form.date_of_birth }}
 											<span class="help-block">
 												<ul class="m-0">
 													{% for error in form.date_of_birth.errors %} 
@@ -99,6 +99,19 @@
 											</span>
 										</div>
 
+										<div class="col-12 py-2">
+											{{ form.accept_terms }}
+											<label class="form-label" for="{{ form.accept_terms.auto_id }}">
+												Li e aceito os <a href="{% url 'terms' %}">Termos de Uso.</a>
+											</label>
+											<span class="help-block">
+												<ul class="m-0">
+													{% for error in form.accept_terms.errors %} 
+														<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</span>
+										</div>
 										{{ form.role }}
 								
 										<!-- Submit button -->

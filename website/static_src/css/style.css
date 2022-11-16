@@ -1989,7 +1989,6 @@ li.post-comment .comet-avatar {
 
 #people-list {
     margin-top: 20px;
-    max-height: 450px;
     position: relative;
 }
 
@@ -1997,7 +1996,6 @@ li.post-comment .comet-avatar {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
-    width: 10%;
     max-width: 45px;
     position: relative;
 }
@@ -4704,6 +4702,8 @@ canvas {
 .your-page > figure img,
 .notification-box > ul li figure img {
     border-radius: 100%;
+    height: 45px;
+    width: 45px;
 }
 
 
@@ -10189,4 +10189,16 @@ aside.sidebar.full-style {
 
 .h-80 {
     height: 80%!important;
+}
+
+.navbar.navbar-6 .navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger8.svg?color=000000');
+  }
+
+.finish-chat {
+    color: #575b5f;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
 }

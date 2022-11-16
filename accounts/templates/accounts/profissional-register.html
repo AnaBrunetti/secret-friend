@@ -35,7 +35,7 @@
 									<div class="row m-0">
 										<div class="col-12 py-1">
 											<div class="row m-0">
-												<div class="col-6 p-0 pr-2">
+												<div class="col-4 p-0">
 													<!-- Username input -->
 													<label class="form-label" for="{{ form.username.auto_id }}">Usuário</label>
 													{{ form.username }}
@@ -47,7 +47,19 @@
 														</ul>
 													</span>
 												</div>
-												<div class="col-6 p-0">
+												<div class="col-4 px-2">
+													<!-- cpf input -->
+													<label class="form-label" for="{{ form.register.auto_id }}">Número de Registro</label>
+													{{ form.register }}
+													<span class="help-block">
+														<ul class="m-0">
+															{% for error in form.register.errors %} 
+																<li>{{error}}</li>
+															{% endfor %}
+														</ul>
+													</span>
+												</div>
+												<div class="col-4 p-0">
 													<!-- cpf input -->
 													<label class="form-label" for="{{ form.cpf.auto_id }}">CPF</label>
 													{{ form.cpf }}
@@ -135,7 +147,7 @@
 												<div class="col-6 p-0 pr-2">
 													<!-- Date of Birth input -->
 													<label class="form-label" for="{{ form.date_of_birth.auto_id }}">Data de nascimento</label>
-													<input type="date" name="{{ form.date_of_birth.name }}" value="{{ form.date_of_birth.value }}" class="form-control" id="{{ form.date_of_birth.auto_id }}">
+													{{ form.date_of_birth }}
 													<span class="help-block">
 														<ul class="m-0">
 															{% for error in form.date_of_birth.errors %} 
@@ -189,7 +201,19 @@
 												</div>
 											</div>
 										</div>
-									
+										<div class="col-12 py-2">
+											{{ form.accept_terms }}
+											<label class="form-label" for="{{ form.accept_terms.auto_id }}">
+												Li e aceito os <a href="{% url 'terms' %}">Termos de Uso.</a>
+											</label>
+											<span class="help-block">
+												<ul class="m-0">
+													{% for error in form.accept_terms.errors %} 
+														<li>{{error}}</li>
+													{% endfor %}
+												</ul>
+											</span>
+										</div>
 										{{ form.role }}
 
 										<!-- Submit button -->

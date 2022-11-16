@@ -17,6 +17,7 @@ class CustomUserForm(AuthenticationForm):
 
 
 class RegisterForm(UserCreationForm):
+    accept_terms = forms.BooleanField(required=True)
     
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
@@ -24,6 +25,7 @@ class RegisterForm(UserCreationForm):
         self.fields['username'].widget.attrs['disabled'] = True
         self.fields['gender'].required = True
         self.fields['gender'].widget.attrs['class'] = 'form-control'
+        self.fields['date_of_birth'].widget.attrs['placeholder'] = "01/01/0001"
 
     class Meta:
         model = User
@@ -31,7 +33,16 @@ class RegisterForm(UserCreationForm):
         widgets = {
             'role': forms.HiddenInput(),
             'gender': forms.Select(),
+            'date_of_birth': forms.DateInput(attrs={
+                'class': 'form-control'
+            })
         }
+    
+    def clean_accept_terms(self):
+        if not self.cleaned_data.get("accept_terms"):
+            raise ValidationError(
+                _("Você precisa aceitar os termos para realizar o cadastro.")
+            )
 
 
 class ProfissionalRegisterForm(forms.ModelForm):
@@ -39,6 +50,7 @@ class ProfissionalRegisterForm(forms.ModelForm):
     A form that creates a user, with no privileges, from the given username and
     password.
     """
+    accept_terms = forms.BooleanField(required=True)
     error_messages = {
         'password_mismatch': _('The two password fields didn’t match.'),
     }
@@ -64,8 +76,11 @@ class ProfissionalRegisterForm(forms.ModelForm):
         for field in self.fields:
             if self.fields[field] and hasattr(self.fields[field], 'widget') and hasattr(self.fields[field].widget, 'attrs'):    
                 self.fields[field].widget.attrs['class'] = 'form-control'
+        self.fields['accept_terms'].widget.attrs['class'] = None
         self.fields['phone'].widget.attrs['placeholder'] = "(99) 9999-9999"
         self.fields['cpf'].widget.attrs['placeholder'] = "999.999.999-99"
+        self.fields['register'].widget.attrs['placeholder'] = "999999"
+        self.fields['date_of_birth'].widget.attrs['placeholder'] = "01/01/0001"
         self.fields['date_of_birth'].widget.attrs['type'] = "date"
         
 
@@ -74,6 +89,9 @@ class ProfissionalRegisterForm(forms.ModelForm):
         exclude = ['user', 'is_approved']
         widgets = {
             'gender': forms.Select(),
+            'date_of_birth': forms.DateInput(attrs={
+                'class': 'form-control'
+            })
         }
 
     def clean_password2(self):
@@ -85,6 +103,12 @@ class ProfissionalRegisterForm(forms.ModelForm):
                 code='password_mismatch',
             )
         return password2
+    
+    def clean_accept_terms(self):
+        if not self.cleaned_data.get("accept_terms"):
+            raise ValidationError(
+                _("Você precisa aceitar os termos para realizar o cadastro.")
+            )
     
     def _post_clean(self):
         super()._post_clean()
@@ -118,12 +142,17 @@ class ProfissionalRegisterForm(forms.ModelForm):
         return profissional
 
 
-class PatientEditForm(UserCreationForm):
+class PatientEditForm(forms.ModelForm):
+    username = forms.CharField(disabled=True)
+    date_of_birth = forms.DateField(
+        input_formats=['%d/%m/%Y'],
+        widget=forms.DateInput(attrs={
+            'class': 'form-control'
+        })
+    )
     
     def __init__(self, *args, **kwargs):
-        super(RegisterForm, self).__init__(*args, **kwargs)
-        self.fields['username'].required = False
-        self.fields['username'].widget.attrs['disabled'] = True
+        super(PatientEditForm, self).__init__(*args, **kwargs)
         self.fields['gender'].required = True
         self.fields['gender'].widget.attrs['class'] = 'form-control'
 
@@ -131,6 +160,48 @@ class PatientEditForm(UserCreationForm):
         model = User
         fields = ['username', 'date_of_birth', 'gender']
         widgets = {
-            'role': forms.HiddenInput(),
             'gender': forms.Select(),
         }
+
+class ProfissionalEditForm(forms.ModelForm):
+    username = forms.CharField(disabled=True)
+    
+    def __init__(self, *args, **kwargs):
+        _fields = ['first_name', 'last_name', 'date_of_birth', 'gender']
+        super(ProfissionalEditForm, self).__init__(*args, **kwargs)
+        self.fields.update(fields_for_model(User, _fields))
+        self.fields['gender'].required = True
+        self.fields['gender'].widget.attrs['class'] = 'form-control'
+        for field in self.fields:
+            if self.fields[field] and hasattr(self.fields[field], 'widget') and hasattr(self.fields[field].widget, 'attrs'):    
+                self.fields[field].widget.attrs['class'] = 'form-control'
+        self.fields['phone'].widget.attrs['placeholder'] = "(99) 99999-9999"
+        self.fields['cpf'].widget.attrs['placeholder'] = "999.999.999-99"
+        self.fields['register'].widget.attrs['placeholder'] = "999999"
+        self.fields['date_of_birth'].input_formats = ['%d/%m/%Y']
+
+    class Meta:
+        model = Profissional
+        fields = ['username', 'phone', 'picture', 'document', 'cpf', 'register']
+        widgets = {
+            'gender': forms.Select(),
+            'date_of_birth': forms.DateInput(attrs={
+                'class': 'form-control'
+            })
+        }
+
+    def save(self, commit=True, *args, **kwargs):
+        profissional = Profissional.objects.get(pk=self.initial.get('user').profissional.pk)
+        profissional.phone = self.cleaned_data['phone']
+        profissional.picture = self.cleaned_data['picture']
+        profissional.document = self.cleaned_data['document']
+        profissional.cpf = self.cleaned_data['cpf']
+        profissional.register = self.cleaned_data['register']
+        profissional.save(update_fields=['phone', 'picture', 'document', 'cpf', 'register'])
+        user = profissional.user
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.date_of_birth = self.cleaned_data['date_of_birth']
+        user.gender = self.cleaned_data['gender']
+        user.save(update_fields=['first_name', 'last_name', 'date_of_birth', 'gender'])
+        return self.instance
