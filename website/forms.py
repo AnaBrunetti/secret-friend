@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
             send_mail('[Amigo Secreto] - Novo contato: ' + self.cleaned_data.get('contact_subject'),
 				self.cleaned_data.get('contact_message'),
 				'carol-brunetti@hotmail.com',
-				['eduardomonita1@gmail.com'],
+				['annabrunetti23@gmail.com'],
 				fail_silently=False,)
             return JsonResponse({ 'success' : True, 'message' : 'seu email foi enviado com sucesso.' }, safe = False, status=200)
         except Exception as e:

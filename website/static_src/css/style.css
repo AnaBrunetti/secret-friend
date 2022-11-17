@@ -2955,7 +2955,6 @@ li.google {
     float: left;
     padding: 35px 60px;
     position: relative;
-    width: 60%;
 }
 
 .cntct-adres {
@@ -2963,8 +2962,8 @@ li.google {
     float: left;
     padding: 50px;
     position: relative;
-    width: 40%;
     color: #fff;
+    height: 100%;
 }
 
 .cnt-title > span {

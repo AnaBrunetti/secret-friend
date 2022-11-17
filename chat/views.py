@@ -94,7 +94,7 @@ class AddChatView(ListView):
         return super(AddChatView, self).dispatch(*args, **kwargs)
     
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = User.objects.filter(role=User.ROLE_PROFESSIONAL)
         search = self.request.GET.get("q")
         if search:
             queryset = queryset.filter(

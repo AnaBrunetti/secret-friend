@@ -20,7 +20,7 @@
                                                 <a onclick="update('{{people.username}}');" style="display: block;">
                                                     <figure>
                                                     {% if people.role == bot %}
-                                                        <img src={% static 'website/img/logo.png' %} alt="">
+                                                        <img src={% static 'website/img/alfred.png' %} alt="">
                                                     {% elif people.role == profissional %}
                                                         <img src="{{people.profissional.picture.url}}" alt="">
                                                     {% else %}
@@ -42,7 +42,7 @@
                                         <div class="col-6 col-sm-7 col-lg-10 conversation-head">
                                             <figure>
                                                 {% if you_chat_user.role == bot %}
-                                                    <img src={% static 'website/img/logo.png' %} alt="">
+                                                    <img src={% static 'website/img/alfred.png' %} alt="">
                                                 {% elif you_chat_user.role == profissional %}
                                                     <img src="{{you_chat_user.profissional.picture.url}}" alt="">
                                                 {% else %}
