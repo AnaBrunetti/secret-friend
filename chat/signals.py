@@ -13,6 +13,7 @@ def create_chat_bot(sender, instance, created, **kwargs):
         if not User.objects.filter(role=User.ROLE_BOT).exists():
             user_fields = {
                 "role": User.ROLE_BOT,
+                "first_name": settings.BOT_FIRST_NAME
             }
             User.objects.create_user(
                 username=settings.BOT_NAME,

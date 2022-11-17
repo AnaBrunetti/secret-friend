@@ -28,7 +28,11 @@
                                                     {% endif %}
                                                     </figure>
                                                     <div class="people-name">
-                                                        <span><b>{{people.username}}</b></span>
+                                                        {% if people.role == patient %}
+                                                            <span><b>{{people.username}}</b></span>
+                                                        {% else %}
+                                                            <span><b>{{people.first_name}}</b></span>
+                                                        {% endif %}
                                                     </div>
                                                 </a>
                                             </li>
@@ -49,7 +53,11 @@
                                                     <img src={% static 'website/img/logo.png' %} alt="">
                                                 {% endif %}
                                             </figure>
-                                            <span>{{you_chat_user.username}}</span>
+                                            {% if you_chat_user.role == patient %}
+                                                <span>{{you_chat_user.username}}</span>
+                                            {% else %}
+                                                <span>{{you_chat_user.first_name}} {{you_chat_user.last_name}}</span>
+                                            {% endif %}
                                         </div>
                                         <div class="col-6 col-sm-5 col-lg-2 conversation-head text-align-right">
                                             {% comment %} <!--Navbar-->

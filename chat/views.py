@@ -25,6 +25,7 @@ class ChatView(TemplateView, BaseFormView):
         context_data["user_id"] = self.request.user.id
         context_data["bot"] = User.ROLE_BOT
         context_data["profissional"] = User.ROLE_PROFESSIONAL
+        context_data["patient"] = User.ROLE_PATIENT
         return context_data
     
     def get_form(self):

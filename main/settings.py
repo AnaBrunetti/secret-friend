@@ -173,7 +173,8 @@ CHANNEL_LAYERS = {
 }
 
 # Bot
-BOT_NAME = os.environ.get("BOT_NAME", "Alfred")
+BOT_NAME = os.environ.get("BOT_NAME", "alfred")
+BOT_FIRST_NAME = os.environ.get("BOT_NAME", "Alfred")
 BOT_EMAIL = os.environ.get("BOT_EMAIL", "bot.secreat.friend@gmail.com")
 BOT_PASSWORD = os.environ.get("BOT_PASSWORD", "2WX4g#4G#9E6")
 BOT_MESSAGE = \
