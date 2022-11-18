@@ -60,7 +60,7 @@ class ChatView(TemplateView, BaseFormView):
         
         kwargs["me_chat_user"] = me_chat_user
         kwargs["you_chat_user"] = you_chat_user
-        kwargs["peoples_messages"] = chat_room.get_messages(request.user)
+        kwargs["peoples_messages"] = chat_room.get_messages(request.user) if chat_room else None
         kwargs["peoples"] = User.objects.filter(chats__users=me_chat_user).exclude(id=me_chat_user.id).distinct()
         kwargs["chat_room"] = chat_room
         context = self.get_context_data(**kwargs)

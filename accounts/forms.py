@@ -94,12 +94,12 @@ class ProfissionalRegisterForm(forms.ModelForm):
             })
         }
         
-    def clean_username(self):
-        if User.objects.filter(username=self.cleaned_data.get('username')).exists():
-            raise ValidationError(
-                _('Usuário já existente'),
-                code='username_invalid',
-            )
+    # def clean_username(self):
+    #     if User.objects.filter(username=self.cleaned_data.get('username')).exists():
+    #         raise ValidationError(
+    #             _('Usuário já existente'),
+    #             code='username_invalid',
+    #         )
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
